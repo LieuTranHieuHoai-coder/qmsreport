@@ -1,0 +1,23 @@
+===== Buổi 10 =====
+    TypeScript
+
+
+===== Buổi 11 =====
+    React router dom: lib
+
+===== Buổi 12 =====
+    Hooks: stateless
+        - useState
+        - useEffect
+        - useCallback
+        - useMemo
+        - memo
+        - custom hook
+        - useRef
+        - useReducer
+        ......
+
+===== Buổi 13 =====
+    get list movie
+    get detail movie
+
