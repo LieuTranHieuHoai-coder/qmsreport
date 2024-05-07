@@ -6,6 +6,8 @@ import {
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
+  BankOutlined,
+  RightCircleOutlined
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
@@ -25,31 +27,53 @@ export default function Header() {
     children?: MenuItem[],
     to?: string
   ): MenuItem | null {
-    if (to) {
+    if (to && children?.length === 0) {
       return {
         key,
         icon,
-        children,
+
         label: <Link to={to}>{label}</Link>,
       } as MenuItem;
     } else {
-      return null;
+      if (to && children !== null) {
+        return {
+          key,
+          icon,
+          children,
+          label: <Link to={to}>{label}</Link>,
+        } as MenuItem;
+      } else {
+        return {
+          key,
+          icon,
+          children,
+          label,
+        } as MenuItem;
+      }
     }
   }
 
   const items: MenuItem[] = [
-    getItem("Option 1", "1", <PieChartOutlined />, [], 'about'),
-    getItem("Option 2", "2", <DesktopOutlined />),
-    getItem("User", "sub1", <UserOutlined />, [
-      getItem("Tom", "3"),
-      getItem("Bill", "4"),
-      getItem("Alex", "5"),
+    getItem("Dashboard", "1", <PieChartOutlined />, [], "/"),
+    getItem("Factory", "2", <BankOutlined />, [
+      getItem("Factory A01", "3", <RightCircleOutlined />, [], "FactoryA01"),
+      getItem("Factory A02", "5", <RightCircleOutlined />, [], "FactoryA02"),
+      getItem("Factory A08", "6", <RightCircleOutlined />,[], "FactoryA08"),
+      getItem("Factory B05", "7", <RightCircleOutlined />,[], "FactoryB05"),
+      getItem("Factory B06", "8", <RightCircleOutlined />,[], "FactoryB06"),
+      getItem("Factory C03", "9", <RightCircleOutlined />,[], "FactoryC03"),
+      getItem("Factory C07", "10", <RightCircleOutlined />,[], "FactoryC07"),
     ]),
-    getItem("Team", "sub2", <TeamOutlined />, [
-      getItem("Team 1", "6"),
-      getItem("Team 2", "8"),
-    ]),
-    getItem("Files", "9", <FileOutlined />),
+    // getItem("User", "sub1", <UserOutlined />, [
+    //   getItem("Tom", "3"),
+    //   getItem("Bill", "4"),
+    //   getItem("Alex", "5"),
+    // ]),
+    // getItem("Team", "sub2", <TeamOutlined />, [
+    //   getItem("Team 1", "6"),
+    //   getItem("Team 2", "8"),
+    // ]),
+    // getItem("Files", "9", <FileOutlined />),
   ];
   const [collapsed, setCollapsed] = useState(false);
 
@@ -92,10 +116,9 @@ export default function Header() {
         <HeaderComponent></HeaderComponent>
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
           </Breadcrumb>
-          <Outlet/>
           <div
             style={{
               padding: 24,
@@ -104,7 +127,7 @@ export default function Header() {
               borderRadius: borderRadiusLG,
             }}
           >
-            <Outlet/>
+            <Outlet />
           </div>
         </Content>
         <FooterComponent></FooterComponent>

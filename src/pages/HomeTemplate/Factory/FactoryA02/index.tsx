@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actFetchListData } from "./duck/actions";
-import { RootState } from "../../../store";
+import { RootState } from "../../../../store";
 import { DailyReportView } from "./duck/types";
 import type { DatePickerProps } from "antd";
 import { DatePicker, Space } from "antd";
@@ -13,7 +13,7 @@ import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
-export default function HomePage() {
+export default function FactoryA02() {
   const dispatch: any = useDispatch();
   const { loading, data } = useSelector(
     (state: RootState) => state.listDailyReportReducer
@@ -24,11 +24,11 @@ export default function HomePage() {
     value: number;
   };
   function sumPass():number {  
-    let total = data?.reduce((total, item:any) => total + item.passQty, 0);
+    let total = data?.reduce((total, item:any) => total + item.rft, 0);
     return total ?? 0;
   };
   function sumDefect():number {  
-    let total = data?.reduce((total, item:any) => total + item.defectQty, 0);
+    let total = data?.reduce((total, item:any) => total + item.defectPerDay, 0);
     return total ?? 0;
   };
   const dataPie: PieData[] = [
@@ -43,7 +43,7 @@ export default function HomePage() {
   const handleChange = (dates: any, dateStrings: [string, string]) => {
     setDaterange(dateStrings);
   }
-  useEffect(() => dispatch(actFetchListData(selectDate ? selectDate?.[0] : today , selectDate ? selectDate?.[1] : today , "QVN", "" , "")), [selectDate]);
+  useEffect(() => dispatch(actFetchListData(selectDate ? selectDate?.[0] : today , selectDate ? selectDate?.[1] : today , "QVN", "" , "Factory A02")), [selectDate]);
   dayjs.extend(customParseFormat);
   const renderDatePicker = () => {
     return (
