@@ -42,11 +42,12 @@ const renderActiveShape = (props: any) => {
   const textAnchor = cos >= 0 ? "start" : "end";
 
   return (
-    <g >
+    <g style={{transform: 'translate(20%)'}}>
       <text x={cx} y={cy} dy={8} textAnchor="middle" fontSize={20} fill={fill}>
         {payload.name}
       </text>
       <Sector
+      
         cx={cx}
         cy={cy}
         innerRadius={innerRadius}
@@ -56,6 +57,7 @@ const renderActiveShape = (props: any) => {
         fill={fill}
       />
       <Sector
+      
         cx={cx}
         cy={cy}
         startAngle={startAngle}
@@ -64,7 +66,7 @@ const renderActiveShape = (props: any) => {
         outerRadius={outerRadius + 10}
         fill={fill}
       />
-      <path
+      <path 
         d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
         stroke={fill}
         fill="none"
@@ -117,10 +119,9 @@ export default function PieChartComponent(props: Props) {
             fill="#8884d8"
             dataKey="value"
             onMouseEnter={onPieEnter}
-            style={{transform: "translate(30%) !important"}}
           >
             {valuePie.map((entry, index) => (
-              <Cell fill={CustomColor[index % CustomColor.length]} />
+              <Cell fill={CustomColor[index % CustomColor.length]} style={{transform: 'translate(20%)'}}/>
             ))}
           </Pie>
         </PieChart>

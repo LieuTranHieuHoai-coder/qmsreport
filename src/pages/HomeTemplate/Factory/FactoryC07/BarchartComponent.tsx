@@ -14,7 +14,7 @@ import { RootState } from "../../../../store";
 import { DailyReportView } from "./duck/types";
 
 export default function BarChartComponent() {
-  const { loading, data } = useSelector(
+  const { loading, data , error} = useSelector(
     (state: RootState) => state.listDailyReportReducer
   );
   const tranformed: DataChart[] = [];
@@ -43,7 +43,6 @@ export default function BarChartComponent() {
         }
       });
     }
-    console.log(tranformed);
   }
 
 

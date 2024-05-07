@@ -4,13 +4,14 @@ import { actFetchListData } from "./duck/actions";
 import { RootState } from "../../../../store";
 import { DailyReportView } from "./duck/types";
 import type { DatePickerProps } from "antd";
-import { DatePicker, Space } from "antd";
+import { DatePicker, Result, Space } from "antd";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import "bootstrap/js/dist/collapse";
 import "bootstrap/js/dist/dropdown";
 import PieChartComponent from "./PieChartComponent";
 import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
+import TableReportComponent from "./DataTableReport";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function FactoryA02() {
@@ -69,6 +70,14 @@ export default function FactoryA02() {
           </div>
         </div>
       );
+    }else {
+      return (
+        <Result
+          status="success"
+          title="No data available"
+          subTitle="Sorry, the page you visited does not exist."
+        />
+      );
     }
   };
 
@@ -79,6 +88,7 @@ export default function FactoryA02() {
         <br />
         <br />
         {renderChart()}
+        <TableReportComponent></TableReportComponent>
       </div>
     </div>
   );

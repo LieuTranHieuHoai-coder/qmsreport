@@ -4,7 +4,7 @@ import { actFetchListData } from "./duck/actions";
 import { RootState } from "../../../../store";
 import { DailyReportView } from "./duck/types";
 import type { DatePickerProps } from "antd";
-import { DatePicker, Space } from "antd";
+import { DatePicker, Result, Space } from "antd";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import "bootstrap/js/dist/collapse";
 import "bootstrap/js/dist/dropdown";
@@ -68,6 +68,14 @@ export default function FactoryA01() {
             <PieChartComponent valuePie={dataPie}></PieChartComponent>
           </div>
         </div>
+      );
+    }else {
+      return (
+        <Result
+          status="success"
+          title="No data available"
+          subTitle="Sorry, the page you visited does not exist."
+        />
       );
     }
   };
