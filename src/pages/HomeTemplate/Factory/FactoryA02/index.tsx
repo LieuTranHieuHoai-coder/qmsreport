@@ -88,8 +88,9 @@ export default function FactoryA02() {
         <br />
         <br />
         {renderChart()}
-        <TableReportComponent></TableReportComponent>
+        
       </div>
+      <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
     </div>
   );
 }

@@ -224,7 +224,6 @@ export default function TableReportComponent(props: Props) {
           data={valueTable}
           columns={columns}
           options={options}
-          
         />
       </ThemeProvider>
     </>

@@ -11,6 +11,7 @@ import "bootstrap/js/dist/dropdown";
 import PieChartComponent from "./PieChartComponent";
 import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
+import TableReportComponent from "./DataTableReport";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function FactoryC07() {
@@ -106,6 +107,7 @@ export default function FactoryC07() {
         <br />
         {renderChart()}
       </div>
+      <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
     </div>
   );
 }
