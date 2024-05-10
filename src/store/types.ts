@@ -4,6 +4,12 @@ export type AppState<T> = {
   error: any;
 };
 
+export type AppStateChart<T> = {
+  loading: boolean;
+  data: T[] | null;
+  error: any;
+};
+
 export type Action = {
   type: string;
   payload?: any;

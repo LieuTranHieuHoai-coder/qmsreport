@@ -2,47 +2,32 @@ import React from "react";
 import MUIDataTable from "mui-datatables";
 import { DailyReportView } from "./duck/types";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useTranslation } from "react-i18next";
 type Props = {
   valueTable: DailyReportView[];
 };
 export default function TableReportComponent(props: Props) {
   const { valueTable } = props;
+  const cloneProps = {...props};
+  const { t } = useTranslation('global');
+  function defectRate(){
+    cloneProps.valueTable.map((item:any) => {
+      item.defectRate = ((item.defectPerDay / item.qty) * 100).toFixed(2).toString() + '%'; 
+    });
+  }
   const columns: any = [
-    // {
-    //   name: "createDated",
-    //   label: "CreateDated",
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //   },
-    // },
     {
       name: "sewingLine",
-      label: "SewingLine",
+      label: `${t("homepage.dashboard.sewing")}`,
       options: {
         filter: true,
         sort: true,
       },
     },
-    // {
-    //   name: "operatorFactory",
-    //   label: "OperatorFactory",
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //   },
-    // },
-    // {
-    //   name: "floor",
-    //   label: "Floor",
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //   },
-    // },
+    
     {
       name: "customer",
-      label: "KHÁCH HÀNG \n CUSTOMER \n 品牌",
+      label: `${t("homepage.dashboard.customer")}`,
       options: {
         filter: true,
         sort: true,
@@ -50,7 +35,7 @@ export default function TableReportComponent(props: Props) {
     },
     {
       name: "buyMonth",
-      label: "Tháng \n BuyMonth \n 月",
+      label: `${t("homepage.dashboard.buymonth")}`,
       options: {
         filter: true,
         sort: true,
@@ -58,7 +43,7 @@ export default function TableReportComponent(props: Props) {
     },
     {
       name: "season",
-      label: "Mùa \n Season \n 季",
+      label: `${t("homepage.dashboard.season")}`,
       options: {
         filter: true,
         sort: true,
@@ -66,31 +51,16 @@ export default function TableReportComponent(props: Props) {
     },
     {
       name: "style",
-      label: "Mã Hàng \n Style \n 款式",
+      label: `${t("homepage.dashboard.style")}`,
       options: {
         filter: true,
         sort: true,
       },
     },
-    // {
-    //   name: "orderNo",
-    //   label: "OrderNo",
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //   },
-    // },
-    // {
-    //   name: "poNo",
-    //   label: "PoNo",
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //   },
-    // },
+    
     {
       name: "colorName",
-      label: "Màu \n Color \n 顏色",
+      label: `${t("homepage.dashboard.color")}`,
       options: {
         filter: true,
         sort: true,
@@ -106,7 +76,7 @@ export default function TableReportComponent(props: Props) {
     },
     {
       name: "qty",
-      label: "ĐÃ KIỂM \n INSPECTED \n 檢查",
+      label: `${t("homepage.dashboard.inspected")}`,
       options: {
         filter: true,
         sort: true,
@@ -114,7 +84,7 @@ export default function TableReportComponent(props: Props) {
     },
     {
       name: "passQty",
-      label: "Hàng Đạt \n Good Garments \n 最終良品",
+      label: `${t("homepage.dashboard.goodgarment")}`,
       options: {
         filter: true,
         sort: true,
@@ -122,31 +92,24 @@ export default function TableReportComponent(props: Props) {
     },
     {
       name: "rft",
-      label: "RFT \n 初檢良品",
+      label: `${t("homepage.dashboard.rft")}`,
       options: {
         filter: true,
         sort: true,
       },
     },
-    {
-      name: "defectQty",
-      label: "HÀNG SỬA \n DEFECT \n 初檢不良品",
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
-    // {
-    //   name: "brokenQty",
-    //   label: "BrokenQty",
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //   },
-    // },
     {
       name: "defectPerDay",
-      label: "DefectPerDay \n Lỗi hôm nay",
+      label: `${t("homepage.dashboard.defect_table")}`,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+
+    {
+      name: "defectRate",
+      label: `${t("homepage.dashboard.defectRate")}`,
       options: {
         filter: true,
         sort: true,
@@ -182,7 +145,7 @@ export default function TableReportComponent(props: Props) {
               padding: "10px 4px",
             },
             body: {
-              padding: "7px 15px",
+              padding: "10px 30px",
               textAlign: "center",
             },
             
@@ -218,9 +181,10 @@ export default function TableReportComponent(props: Props) {
 
   return (
     <>
+    {defectRate()}
       <ThemeProvider theme={getMuiTheme()}>
         <MUIDataTable
-          title={"DAILY INSPECTION STATUS WORKSHOP 2"}
+          title={t("homepage.dashboard.dailyworkshop8")}
           data={valueTable}
           columns={columns}
           options={options}

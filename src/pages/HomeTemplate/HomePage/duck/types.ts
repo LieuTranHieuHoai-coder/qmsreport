@@ -18,4 +18,16 @@ export interface DailyReportView {
     defectQty?: number;
     brokenQty?: number;
     defectPerDay?: number;
+    defectRate?: string;
+}
+
+export interface ChartDefectCodeView {
+    defineCode?: string ;
+    total?: number;
+    operatorFactory?: string ;
+    floor?: string ;
+    enUs?: string ;
+    viVN?: string ;
+    zhCN?: string ;
+    zhTW?: string ;
 }

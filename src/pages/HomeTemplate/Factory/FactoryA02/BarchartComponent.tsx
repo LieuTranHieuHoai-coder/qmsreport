@@ -20,8 +20,8 @@ export default function BarChartComponent() {
   const tranformed: DataChart[] = [];
   interface DataChart {
     sewingLine?: string;
-    passQty?: number;
-    defectQty?: number;
+    PASS?: number;
+    DEFECT?: number;
   }
 
   function fillData() {
@@ -29,15 +29,14 @@ export default function BarChartComponent() {
       data.forEach((item: any) => {
         const exist = tranformed?.find(t => t.sewingLine === item.sewingLine);
         if (exist) {
-          exist.defectQty += item?.defectQty;
-          exist.passQty += item?.passQty;
-          
+          exist.DEFECT += item?.defectQty;
+          exist.PASS += item?.passQty;
         }
         else {
           tranformed.push({
             sewingLine: item.sewingLine,
-            passQty: item.passQty,
-            defectQty: item.defectQty,
+            PASS: item.passQty,
+            DEFECT: item.defectQty,
           });
           
         }
@@ -50,7 +49,7 @@ export default function BarChartComponent() {
   const renderCustomizedLabel = (props: any) => {
     const { x, y, width, value, index } = props;
     const radius = 10;
-    const defectvalue = tranformed[index].passQty;
+    const defectvalue = tranformed[index].PASS;
     return (
       <g>
         <div />
@@ -69,7 +68,7 @@ export default function BarChartComponent() {
   const renderCustomizedLabel2 = (props: any) => {
     const { x, y, width, value, index } = props;
     const radius = 10;
-    const defectvalue = tranformed[index].defectQty;
+    const defectvalue = tranformed[index].DEFECT;
 
     return (
       <g>
@@ -105,10 +104,10 @@ export default function BarChartComponent() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="passQty" fill="#1253f2" minPointSize={5}>
+          <Bar dataKey="PASS" fill="#1253f2" minPointSize={5}>
             <LabelList dataKey="sewingLine" content={renderCustomizedLabel} />
           </Bar>
-          <Bar dataKey="defectQty" fill="#f21262" minPointSize={10}>
+          <Bar dataKey="DEFECT" fill="#f21262" minPointSize={10}>
             <LabelList dataKey="sewingLine" content={renderCustomizedLabel2} />
           </Bar>
         </BarChart>

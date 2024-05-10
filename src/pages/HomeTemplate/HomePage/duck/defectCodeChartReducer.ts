@@ -1,30 +1,29 @@
-import { Action } from "../../../../../store/types";
+import { Action, AppStateChart } from "../../../../store/types";
 import * as ActionType from "./constants";
-import { DailyReportView } from "./types";
-import { AppState } from "./../../../../../store/types";
+import { ChartDefectCodeView } from "./types";
 
-const initialState: AppState<DailyReportView> = {
+const initialState: AppStateChart<ChartDefectCodeView> = {
   loading: false,
   data: null,
   error: null,
 };
-const listDailyReportReducer = (state = initialState, action: Action) => {
+const chartDefectCodeReducer = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ActionType.LIST_DAILYREPORT_REQUEST: {
+    case ActionType.LIST_CHARTREPORT_REQUEST: {
       state.loading = true;
       state.data = null;
       state.error = null;
       return { ...state };
     }
 
-    case ActionType.LIST_DAILYREPORT_SUCCESS: {
+    case ActionType.LIST_CHARTREPORT_SUCCESS: {
       state.loading = false;
       state.data = action.payload;
       state.error = null;
       return { ...state };
     }
 
-    case ActionType.LIST_DAILYREPORT_FAILED: {
+    case ActionType.LIST_CHARTREPORT_FAILED: {
       state.loading = false;
       state.data = null;
       state.error = action.payload;
@@ -36,4 +35,4 @@ const listDailyReportReducer = (state = initialState, action: Action) => {
   }
 };
 
-export default listDailyReportReducer;
+export default chartDefectCodeReducer;

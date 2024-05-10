@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actFetchListData } from "./duck/actions";
+import { actFetchDefectChart, actFetchListData } from "./duck/actions";
 import { RootState } from "../../../../store";
 import { DailyReportView } from "./duck/types";
 import type { DatePickerProps } from "antd";
@@ -12,6 +12,7 @@ import PieChartComponent from "./PieChartComponent";
 import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
+import DefectCodeChartComponent from "./DefectCodeChartComponent";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function FactoryB05() {
@@ -45,6 +46,17 @@ export default function FactoryB05() {
     setDaterange(dateStrings);
   }
   useEffect(() => dispatch(actFetchListData(selectDate ? selectDate?.[0] : today , selectDate ? selectDate?.[1] : today , "QVN", "" , "Factory B05")), [selectDate]);
+  useEffect(
+    () =>
+      dispatch(
+        actFetchDefectChart(
+          selectDate ? selectDate?.[0] : today,
+          selectDate ? selectDate?.[1] : today,
+          "Factory B05"
+        )
+      ),
+    [selectDate]
+  );
   dayjs.extend(customParseFormat);
   const renderDatePicker = () => {
     return (
@@ -90,6 +102,14 @@ export default function FactoryB05() {
         {renderChart()}
       </div>
       <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
+      <br />
+      <h2 className="fw-bold w-100 text-center">Thống Kê Lỗi Theo Code</h2>
+      <div className="col">
+        <div className="w-100" style={{ height: 300 }}>
+          <br />
+          <DefectCodeChartComponent></DefectCodeChartComponent>
+        </div>
+      </div>
     </div>
   );
 }

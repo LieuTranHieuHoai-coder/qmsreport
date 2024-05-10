@@ -1,0 +1,27 @@
+{
+    "header": {
+        "title": "xin chào"
+    },
+    "homepage":{
+        "dashboard":{
+            "pieTitle": "Tỷ Lệ Đạt/Lỗi",
+            "qtyAllFactory" : "Số Lượng Kiểm Tất Cả Xưởng",
+            "fty1": "Xưởng 1",
+            "fty2": "Xưởng 2",
+            "fty3": "Xưởng 3",
+            "fty5": "Xưởng 5",
+            "fty6": "Xưởng 6",
+            "fty7": "Xưởng 7",
+            "fty8": "Xưởng 8",
+            "detailDefectCode": "Thống Kê Theo Mã Lỗi",
+            "dailyworkshop": "KIỂM TRA HÀNG NGÀY",
+            "dailyworkshop1": "KIỂM TRA HÀNG NGÀY XƯỞNG 1",
+            "dailyworkshop2": "KIỂM TRA HÀNG NGÀY XƯỞNG 2",
+            "dailyworkshop3": "KIỂM TRA HÀNG NGÀY XƯỞNG 3",
+            "dailyworkshop5": "KIỂM TRA HÀNG NGÀY XƯỞNG 5",
+            "dailyworkshop6": "KIỂM TRA HÀNG NGÀY XƯỞNG 6",
+            "dailyworkshop7": "KIỂM TRA HÀNG NGÀY XƯỞNG 7",
+            "dailyworkshop8": "KIỂM TRA HÀNG NGÀY XƯỞNG 8"
+        }
+    }
+}

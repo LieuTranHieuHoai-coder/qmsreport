@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actFetchListData } from "./duck/actions";
+import { actFetchDefectChart, actFetchListData } from "./duck/actions";
 import { RootState } from "../../../../store";
 import { DailyReportView } from "./duck/types";
 import type { DatePickerProps } from "antd";
@@ -12,6 +12,7 @@ import PieChartComponent from "./PieChartComponent";
 import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
+import DefectCodeChartComponent from "./DefectCodeChartComponent";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function FactoryA02() {
@@ -24,14 +25,17 @@ export default function FactoryA02() {
     name: string;
     value: number;
   };
-  function sumPass():number {  
-    let total = data?.reduce((total, item:any) => total + item.rft, 0);
+  function sumPass(): number {
+    let total = data?.reduce((total, item: any) => total + item.rft, 0);
     return total ?? 0;
-  };
-  function sumDefect():number {  
-    let total = data?.reduce((total, item:any) => total + item.defectPerDay, 0);
+  }
+  function sumDefect(): number {
+    let total = data?.reduce(
+      (total, item: any) => total + item.defectPerDay,
+      0
+    );
     return total ?? 0;
-  };
+  }
   const dataPie: PieData[] = [
     { id: 1, name: "Pass", value: sumPass() },
     { id: 2, name: "Defect", value: sumDefect() },
@@ -40,37 +44,68 @@ export default function FactoryA02() {
   const dateFormat = "YYYY/MM/DD";
   const date = new Date();
   const today = dayjs(date).format(dateFormat);
-  const [selectDate, setDaterange] = useState<[string,string]>();
+  const [selectDate, setDaterange] = useState<[string, string]>();
   const handleChange = (dates: any, dateStrings: [string, string]) => {
     setDaterange(dateStrings);
-  }
-  useEffect(() => dispatch(actFetchListData(selectDate ? selectDate?.[0] : today , selectDate ? selectDate?.[1] : today , "QVN", "" , "Factory A02")), [selectDate]);
+  };
+  useEffect(
+    () =>
+      dispatch(
+        actFetchListData(
+          selectDate ? selectDate?.[0] : today,
+          selectDate ? selectDate?.[1] : today,
+          "QVN",
+          "",
+          "Factory A02"
+        )
+      ),
+    [selectDate]
+  );
+  useEffect(
+    () =>
+      dispatch(
+        actFetchDefectChart(
+          selectDate ? selectDate?.[0] : today,
+          selectDate ? selectDate?.[1] : today,
+          "Factory A02"
+        )
+      ),
+    [selectDate]
+  );
+
   dayjs.extend(customParseFormat);
   const renderDatePicker = () => {
     return (
       <>
-        <RangePicker format={dateFormat} onChange={handleChange}/>
+        <RangePicker format={dateFormat} onChange={handleChange} />
       </>
     );
   };
 
   const renderChart = () => {
     if (loading) return <div>Loading...</div>;
-    
+
     if (data && data.length > 0) {
       return (
-        <div className="row d-flex justify-content-between align-items-center">
+        <div className="row d-flex justify-content-between align-items-center mb-5">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-9">
             <div className="w-100" style={{ height: 300 }}>
+              <h2 className="fw-bold w-100 text-center">
+                Số Lượng Kiểm Trong Chuyền
+              </h2>
               <BarChartComponent></BarChartComponent>
             </div>
           </div>
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3" style={{ height: 300 }}>
+          <div
+            className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3"
+            style={{ height: 300 }}
+          >
+            <h2 className="fw-bold w-100 text-center">Tỷ Lệ Hàng Đạt/Lỗi</h2>
             <PieChartComponent valuePie={dataPie}></PieChartComponent>
           </div>
         </div>
       );
-    }else {
+    } else {
       return (
         <Result
           status="success"
@@ -88,9 +123,21 @@ export default function FactoryA02() {
         <br />
         <br />
         {renderChart()}
-        
       </div>
-      <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
+      <div className="col">
+        <TableReportComponent
+          valueTable={data ? data : []}
+        ></TableReportComponent>
+      </div>
+
+      <br />
+      <h2 className="fw-bold w-100 text-center">Thống Kê Lỗi Theo Code</h2>
+      <div className="col">
+        <div className="w-100" style={{ height: 300 }}>
+          <br />
+          <DefectCodeChartComponent></DefectCodeChartComponent>
+        </div>
+      </div>
     </div>
   );
 }

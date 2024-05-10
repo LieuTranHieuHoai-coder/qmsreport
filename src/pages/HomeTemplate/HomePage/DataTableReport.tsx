@@ -8,7 +8,7 @@ type Props = {
 };
 export default function TableReportComponent(props: Props) {
   const { valueTable } = props;
-  const cloneProps = {...props};
+  const cloneProps = {...props}
   const { t } = useTranslation('global');
   function defectRate(){
     cloneProps.valueTable.map((item:any) => {
@@ -145,7 +145,7 @@ export default function TableReportComponent(props: Props) {
               padding: "10px 4px",
             },
             body: {
-              padding: "10px 30px",
+              padding: "7px 15px",
               textAlign: "center",
             },
             
@@ -173,7 +173,7 @@ export default function TableReportComponent(props: Props) {
     pagination: {
       next: "Next Page",
       previous: "Previous Page",
-      rowsPerPage: "Rows per page:",
+      rowsPerPage: "Rows per pages:",
       displayRows: "of",
     },
     
@@ -181,11 +181,11 @@ export default function TableReportComponent(props: Props) {
 
   return (
     <>
-    {defectRate()}
+      {defectRate()}
       <ThemeProvider theme={getMuiTheme()}>
         <MUIDataTable
-          title={t("homepage.dashboard.dailyworkshop2")}
-          data={valueTable}
+          title={t("homepage.dashboard.dailyworkshop")}
+          data={cloneProps.valueTable}
           columns={columns}
           options={options}
           

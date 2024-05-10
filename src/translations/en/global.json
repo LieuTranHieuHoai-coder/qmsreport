@@ -1,0 +1,40 @@
+{
+    "header": {
+        "title": "Hello World"
+    },
+    "homepage":{
+        "dashboard":{
+            "pieTitle": "DEFECT RATE",
+            "qtyAllFactory" : "Quantity All Factory",
+            "fty1": "Factory 1",
+            "fty2": "Factory 2",
+            "fty3": "Factory 3",
+            "fty5": "Factory 5",
+            "fty6": "Factory 6",
+            "fty7": "Factory 7",
+            "fty8": "Factory 8",
+            "detailDefectCode": "Details Defect Code",
+            "dailyworkshop": "DAILY INSPECTION STATUS WORKSHOP",
+            "dailyworkshop1": "DAILY INSPECTION STATUS WORKSHOP 1",
+            "dailyworkshop2": "DAILY INSPECTION STATUS WORKSHOP 2",
+            "dailyworkshop3": "DAILY INSPECTION STATUS WORKSHOP 3",
+            "dailyworkshop5": "DAILY INSPECTION STATUS WORKSHOP 5",
+            "dailyworkshop6": "DAILY INSPECTION STATUS WORKSHOP 6",
+            "dailyworkshop7": "DAILY INSPECTION STATUS WORKSHOP 7",
+            "dailyworkshop8": "DAILY INSPECTION STATUS WORKSHOP 8",
+            "sewing": "Sewing",
+            "customer": "Customer",
+            "buymonth": "Buy Month",
+            "color": "Color",
+            "style": "Style",
+            "season": "Season",
+            "size": "Size",
+            "inspected": "Inspected",
+            "goodgarment":"Good garment",
+            "defect_table": "Defect",
+            "rft" : "Right 1st Time",
+            "defectRate": "Defect Rate",
+            "qty": "Quantity"
+        }
+    }
+}

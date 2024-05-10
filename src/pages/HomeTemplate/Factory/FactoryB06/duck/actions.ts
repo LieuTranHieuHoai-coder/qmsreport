@@ -54,3 +54,49 @@ const actListFailed = (error: any): Action => {
     payload: error,
   };
 };
+
+export const actFetchDefectChart = (
+  fd?: string,
+  td?: string,
+  fty?: string
+) => {
+  return (dispatch: any) => {
+    dispatch(actDefectChartRequest());
+
+    client.apiReport
+      .get(
+        "qc/report/ReportDefectByFactory?fromdate=" +
+          fd +
+          "&todate=" +
+          td +
+          "&fty=" +
+          fty
+      )
+      .then((result) => {
+        dispatch(actDefectChartSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actDefectChartFailed(error));
+      });
+  };
+};
+
+const actDefectChartRequest = (): Action => {
+  return {
+    type: ActionType.LIST_CHARTREPORT_REQUEST,
+  };
+};
+
+const actDefectChartSuccess = (data: DailyReportView[]): Action => {
+  return {
+    type: ActionType.LIST_CHARTREPORT_SUCCESS,
+    payload: data,
+  };
+};
+
+const actDefectChartFailed = (error: any): Action => {
+  return {
+    type: ActionType.LIST_CHARTREPORT_FAILED,
+    payload: error,
+  };
+};
