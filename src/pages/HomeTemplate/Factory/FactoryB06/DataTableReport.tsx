@@ -68,7 +68,7 @@ export default function TableReportComponent(props: Props) {
     },
     {
       name: "sizeName",
-      label: "SizeName",
+      label: `${t("homepage.dashboard.size")}`,
       options: {
         filter: true,
         sort: true,

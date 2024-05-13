@@ -1,14 +1,9 @@
 import { Route } from "react-router-dom";
-
-import AdminTemplate from "../pages/AdminTemplate";
-import AddUserPage from "../pages/AdminTemplate/AddUserPage";
-import DashboardPage from "../pages/AdminTemplate/DashboardPage";
 import AuthenPage from "../pages/AuthenPage";
 import AboutPage from "../pages/HomeTemplate/AboutPage";
 import HomePage from "../pages/HomeTemplate/HomePage";
 import ListMoviePage from "../pages/HomeTemplate/ListMoviePage";
 import HomeTemplate from "../pages/HomeTemplate";
-import Another from "../pages/Another";
 import HooksPage from "../pages/HomeTemplate/HooksPage";
 import DetailMovie from "../pages/HomeTemplate/DetailMovie";
 import FactoryA01 from "../pages/HomeTemplate/Factory/FactoryA01";
@@ -18,6 +13,7 @@ import FactoryB05 from "../pages/HomeTemplate/Factory/FactoryB05";
 import FactoryB06 from "../pages/HomeTemplate/Factory/FactoryB06";
 import FactoryC03 from "../pages/HomeTemplate/Factory/FactoryC03";
 import FactoryC07 from "../pages/HomeTemplate/Factory/FactoryC07";
+import LoginComponent from "../pages/AuthenPage";
 
 type TRoute = {
   path: string;
@@ -27,10 +23,10 @@ type TRoute = {
 
 const routes: TRoute[] = [
   {
-    path: "",
+    path: "/home",
     element: HomeTemplate,
     nested: [
-      { path: "", element: HomePage },
+      { path: "index", element: HomePage },
       { path: "about", element: AboutPage },
       { path: "list-movie", element: ListMoviePage },
       { path: "hooks", element: HooksPage },
@@ -44,22 +40,11 @@ const routes: TRoute[] = [
       { path: "FactoryC07", element: FactoryC07 },
     ],
   },
+  
   {
-    path: "admin",
-    element: AdminTemplate,
-    nested: [
-      { path: "dashboard", element: DashboardPage },
-      { path: "add-user", element: AddUserPage },
-    ],
+    path: "/", element: LoginComponent
   },
-  {
-    path: "auth",
-    element: AuthenPage,
-  },
-  {
-    path: "another",
-    element: Another,
-  },
+  
 ];
 
 const renderRoutes = () => {

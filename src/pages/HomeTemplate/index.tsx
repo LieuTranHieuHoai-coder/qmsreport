@@ -17,7 +17,7 @@ import HeaderComponent from "./_components/Header";
 
 export default function Header() {
   const { Header, Content, Footer, Sider } = Layout;
-
+  
   type MenuItem = Required<MenuProps>["items"][number];
 
   function getItem(
@@ -54,7 +54,7 @@ export default function Header() {
   }
 
   const items: MenuItem[] = [
-    getItem("Dashboard", "1", <PieChartOutlined />, [], "/"),
+    getItem("Dashboard", "1", <PieChartOutlined />, [], "/home/index"),
     getItem("Factory", "2", <BankOutlined />, [
       getItem("Factory A01", "3", <RightCircleOutlined />, [], "FactoryA01"),
       getItem("Factory A02", "5", <RightCircleOutlined />, [], "FactoryA02"),

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actFetchDefectChart, actFetchListData } from "./duck/actions";
+import { actFetchDefectChart, actFetchListData, actFetchDBTable } from "./duck/actions";
 import { RootState } from "../../../store";
 import { DailyReportView } from "./duck/types";
 import type { DatePickerProps } from "antd";
@@ -14,6 +14,7 @@ import dayjs, { Dayjs } from "dayjs";
 import DefectCodeChartComponent from "./DefectCodeChartComponent";
 import TableReportComponent from "./DataTableReport";
 import { Trans, useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function HomePage() {
@@ -22,6 +23,19 @@ export default function HomePage() {
   const { loading, data } = useSelector(
     (state: RootState) => state.listDailyReportReducer
   );
+  const { loadingDB, dataDB } = useSelector(
+    (state: RootState) => state.listDBTableReducer
+  );
+  const isUser = useSelector(
+    (state: RootState) => state.userReducer.data
+  );
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isUser) {
+      navigate("/");
+    }
+  },[]);
+
   type PieData = {
     id?: number;
     name: string;
@@ -47,6 +61,7 @@ export default function HomePage() {
   const handleChange = (dates: any, dateStrings: [string, string]) => {
     setDaterange(dateStrings);
   };
+
   useEffect(
     () =>
       dispatch(
@@ -67,6 +82,16 @@ export default function HomePage() {
           selectDate ? selectDate?.[0] : today,
           selectDate ? selectDate?.[1] : today,
           ""
+        )
+      ),
+    [selectDate]
+  );
+  useEffect(
+    () =>
+      dispatch(
+        actFetchDBTable(
+          selectDate ? selectDate?.[0] : today,
+          selectDate ? selectDate?.[1] : today
         )
       ),
     [selectDate]
@@ -107,7 +132,6 @@ export default function HomePage() {
       );
     }
   };
-
   return (
     <div>
       <div className="col">
@@ -118,7 +142,7 @@ export default function HomePage() {
       </div>
       <div className="col mt-5">
         <TableReportComponent
-          valueTable={data ? data : []}
+          valueTable={dataDB ? dataDB : []}
         ></TableReportComponent>
       </div>
       <br />

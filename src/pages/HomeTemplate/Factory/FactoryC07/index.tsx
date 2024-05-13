@@ -13,10 +13,12 @@ import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
 import DefectCodeChartComponent from "./DefectCodeChartComponent";
+import { useTranslation } from "react-i18next";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function FactoryC07() {
   const dispatch: any = useDispatch();
+  const { t } = useTranslation("global");
   const { loading, data, error } = useSelector(
     (state: RootState) => state.listDailyReportReducer
   );
@@ -83,7 +85,7 @@ export default function FactoryC07() {
 
   const renderChart = () => {
     if (loading) return <div>Loading...</div>;
-
+    
     if (data && data.length > 0) {
       return (
         <div className="row d-flex justify-content-between align-items-center">
@@ -92,20 +94,17 @@ export default function FactoryC07() {
               <BarChartComponent></BarChartComponent>
             </div>
           </div>
-          <div
-            className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3"
-            style={{ height: 300 }}
-          >
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3" style={{ height: 300 }}>
             <PieChartComponent valuePie={dataPie}></PieChartComponent>
           </div>
         </div>
       );
-    } else {
+    }else {
       return (
         <Result
           status="success"
-          title="No data available"
-          subTitle="Sorry, the page you visited does not exist."
+          title={t("homepage.dashboard.Nodata")}
+          subTitle={t("homepage.dashboard.pagenotexist")}
         />
       );
     }
@@ -121,7 +120,7 @@ export default function FactoryC07() {
       </div>
       <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
       <br />
-      <h2 className="fw-bold w-100 text-center">Thống Kê Lỗi Theo Code</h2>
+      <h2 className="fw-bold w-100 text-center">{t("homepage.dashboard.detailDefectCode")}</h2>
       <div className="col">
         <div className="w-100" style={{ height: 300 }}>
           <br />

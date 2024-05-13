@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actFetchDefectChart, actFetchListData } from "./duck/actions";
 import { RootState } from "../../../../store";
@@ -13,10 +13,12 @@ import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
 import DefectCodeChartComponent from "./DefectCodeChartComponent";
+import { useTranslation } from "react-i18next";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function FactoryA02() {
   const dispatch: any = useDispatch();
+  const { t } = useTranslation('global');
   const { loading, data } = useSelector(
     (state: RootState) => state.listDailyReportReducer
   );
@@ -84,33 +86,26 @@ export default function FactoryA02() {
 
   const renderChart = () => {
     if (loading) return <div>Loading...</div>;
-
+    
     if (data && data.length > 0) {
       return (
-        <div className="row d-flex justify-content-between align-items-center mb-5">
+        <div className="row d-flex justify-content-between align-items-center">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-9">
             <div className="w-100" style={{ height: 300 }}>
-              <h2 className="fw-bold w-100 text-center">
-                Số Lượng Kiểm Trong Chuyền
-              </h2>
               <BarChartComponent></BarChartComponent>
             </div>
           </div>
-          <div
-            className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3"
-            style={{ height: 300 }}
-          >
-            <h2 className="fw-bold w-100 text-center">Tỷ Lệ Hàng Đạt/Lỗi</h2>
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3" style={{ height: 300 }}>
             <PieChartComponent valuePie={dataPie}></PieChartComponent>
           </div>
         </div>
       );
-    } else {
+    }else {
       return (
         <Result
           status="success"
-          title="No data available"
-          subTitle="Sorry, the page you visited does not exist."
+          title={t("homepage.dashboard.Nodata")}
+          subTitle={t("homepage.dashboard.pagenotexist")}
         />
       );
     }
@@ -124,14 +119,9 @@ export default function FactoryA02() {
         <br />
         {renderChart()}
       </div>
-      <div className="col">
-        <TableReportComponent
-          valueTable={data ? data : []}
-        ></TableReportComponent>
-      </div>
-
+      <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
       <br />
-      <h2 className="fw-bold w-100 text-center">Thống Kê Lỗi Theo Code</h2>
+      <h2 className="fw-bold w-100 text-center">{t("homepage.dashboard.detailDefectCode")}</h2>
       <div className="col">
         <div className="w-100" style={{ height: 300 }}>
           <br />

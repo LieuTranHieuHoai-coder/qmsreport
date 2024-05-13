@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actFetchDefectChart, actFetchListData } from "./duck/actions";
 import { RootState } from "../../../../store";
@@ -13,10 +13,12 @@ import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
 import DefectCodeChartComponent from "./DefectCodeChartComponent";
+import { useTranslation } from "react-i18next";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function FactoryA01() {
   const dispatch: any = useDispatch();
+  const { t } = useTranslation("global");
   const { loading, data } = useSelector(
     (state: RootState) => state.listDailyReportReducer
   );
@@ -86,8 +88,8 @@ export default function FactoryA01() {
       return (
         <Result
           status="success"
-          title="No data available"
-          subTitle="Sorry, the page you visited does not exist."
+          title={t("homepage.dashboard.Nodata")}
+          subTitle={t("homepage.dashboard.pagenotexist")}
         />
       );
     }
@@ -103,7 +105,7 @@ export default function FactoryA01() {
       </div>
       <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
       <br />
-      <h2 className="fw-bold w-100 text-center">Thống Kê Lỗi Theo Code</h2>
+      <h2 className="fw-bold w-100 text-center">{t("homepage.dashboard.detailDefectCode")}</h2>
       <div className="col">
         <div className="w-100" style={{ height: 300 }}>
           <br />

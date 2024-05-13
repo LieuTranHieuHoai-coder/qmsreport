@@ -1,5 +1,5 @@
 {
-  "name": "bc62moviets",
+  "name": "qmsreport",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -36,6 +36,7 @@
     "recharts": "^2.12.6",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
+    "ts-md5": "^1.3.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

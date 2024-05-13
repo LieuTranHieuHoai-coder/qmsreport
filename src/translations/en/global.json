@@ -2,6 +2,29 @@
     "header": {
         "title": "Hello World"
     },
+    "loginpage":{
+        "username": "Username",
+        "password": "Password",
+        "login": "Login",
+        "forgotpassword": "Forgot Password?",
+        "register": "Register",
+        "registerpage": {
+            "title": "Register",
+            "firstname": "First Name",
+            "lastname": "Last Name",
+            "username": "Username",
+            "password": "Password",
+            "confirmpassword": "Confirm Password",
+            "email": "Email",
+            "phone": "Phone",
+            "address": "Address",
+            "city": "City",
+            "state": "State",
+            "country": "Country",
+            "register": "Register",
+            "back": "Back"
+        }
+    },
     "homepage":{
         "dashboard":{
             "pieTitle": "DEFECT RATE",
@@ -34,7 +57,12 @@
             "defect_table": "Defect",
             "rft" : "Right 1st Time",
             "defectRate": "Defect Rate",
-            "qty": "Quantity"
+            "qty": "Quantity",
+            "createDate": "Date",
+            "pass": "Pass",
+            "defect": "Defect",
+            "Nodata": "No data available",
+            "pagenotexist": "Sorry, the page you visited does not exist."
         }
     }
 }

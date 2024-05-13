@@ -101,3 +101,46 @@ const actDefectChartFailed = (error: any): Action => {
     payload: error,
   };
 };
+
+export const actFetchDBTable = (
+  fd?: string,
+  td?: string,
+) => {
+  return (dispatch: any) => {
+    dispatch(actDBTableRequest());
+
+    client.apiReport
+      .get(
+        "qc/report/KVG_DailyInspect?fd=" +
+          fd +
+          "&td=" +
+          td
+      )
+      .then((result) => {
+        dispatch(actDBTableSuccess(result.data));
+      })
+      .catch((error) => {
+        dispatch(actDBTableFailed(error));
+      });
+  };
+};
+
+const actDBTableRequest = (): Action => {
+  return {
+    type: ActionType.LIST_DBTABLE_REQUEST,
+  };
+};
+
+const actDBTableSuccess = (data: DailyReportView[]): Action => {
+  return {
+    type: ActionType.LIST_DBTABLE_SUCCESS,
+    payload: data,
+  };
+};
+
+const actDBTableFailed = (error: any): Action => {
+  return {
+    type: ActionType.LIST_DBTABLE_FAILED,
+    payload: error,
+  };
+};

@@ -5,3 +5,7 @@ export const LIST_DAILYREPORT_FAILED = "@listReportReducer/LIST_DAILYREPORT_FAIL
 export const LIST_CHARTREPORT_REQUEST = "@listReportReducer/LIST_CHARTREPORT_REQUEST";
 export const LIST_CHARTREPORT_SUCCESS = "@listReportReducer/LIST_CHARTREPORT_SUCCESS";
 export const LIST_CHARTREPORT_FAILED = "@listReportReducer/LIST_CHARTREPORT_FAILED";
+
+export const LIST_DBTABLE_REQUEST = "@listReportReducer/LIST_DBTABLE_REQUEST";
+export const LIST_DBTABLE_SUCCESS = "@listReportReducer/LIST_DBTABLE_SUCCESS";
+export const LIST_DBTABLE_FAILED = "@listReportReducer/LIST_DBTABLE_FAILED";

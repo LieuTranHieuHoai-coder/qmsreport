@@ -2,6 +2,13 @@
     "header": {
         "title": "xin chào"
     },
+    "loginpage":{
+        "username": "Tên người dùng",
+        "password": "Mật khẩu",
+        "login": "Đăng Nhập",
+        "forgotpassword": "Quên Mật Khẩu?",
+        "register": "Đăng Ký"
+    },
     "homepage":{
         "dashboard":{
             "pieTitle": "Tỷ Lệ Đạt/Lỗi",
@@ -34,8 +41,12 @@
             "defect_table": "Hàng sửa",
             "rft" : "Đạt lần đầu",
             "defectRate": "Tỷ lệ lỗi",
-            "qty": "Số lượng"
-
+            "qty": "Số lượng",
+            "createDate": "Ngày",
+            "pass": "Đạt",
+            "defect": "Lỗi",
+            "Nodata": "Không có dữ liệu",
+            "pagenotexist": "Xin lỗi, Trang bạn tìm không tồn tại."
 
         }
     }

@@ -1,28 +1,52 @@
 {
     "header": {
-        "title": "xin chào"
+        "title": "Hello World"
+    },
+    "loginpage":{
+        "username": "帳號",
+        "password": "密碼",
+        "login": "登入",
+        "register": "註冊",
+        "forget": "忘記密碼"
     },
     "homepage":{
         "dashboard":{
-            "pieTitle": "Tỷ Lệ Đạt/Lỗi",
-            "qtyAllFactory" : "Số Lượng Kiểm Tất Cả Xưởng",
-            "fty1": "Xưởng 1",
-            "fty2": "Xưởng 2",
-            "fty3": "Xưởng 3",
-            "fty5": "Xưởng 5",
-            "fty6": "Xưởng 6",
-            "fty7": "Xưởng 7",
-            "fty8": "Xưởng 8",
-            "detailDefectCode": "Thống Kê Theo Mã Lỗi",
-            "dailyworkshop": "KIỂM TRA HÀNG NGÀY",
-            "dailyworkshop1": "KIỂM TRA HÀNG NGÀY XƯỞNG 1",
-            "dailyworkshop2": "KIỂM TRA HÀNG NGÀY XƯỞNG 2",
-            "dailyworkshop3": "KIỂM TRA HÀNG NGÀY XƯỞNG 3",
-            "dailyworkshop5": "KIỂM TRA HÀNG NGÀY XƯỞNG 5",
-            "dailyworkshop6": "KIỂM TRA HÀNG NGÀY XƯỞNG 6",
-            "dailyworkshop7": "KIỂM TRA HÀNG NGÀY XƯỞNG 7",
-            "dailyworkshop8": "KIỂM TRA HÀNG NGÀY XƯỞNG 8",
-            "defectRate": "Tỷ lệ lỗi"
+            "pieTitle": "瑕疵率",
+            "qtyAllFactory" : "所有工廠數量",
+            "fty1": "車間 1廠",
+            "fty2": "車間 2廠",
+            "fty3": "車間 3廠",
+            "fty5": "車間 5廠",
+            "fty6": "車間 6廠",
+            "fty7": "車間 7廠",
+            "fty8": "車間 8廠",
+            "detailDefectCode": "瑕疵代碼明細",
+            "dailyworkshop": "車間每日檢查狀況",
+            "dailyworkshop1": "車間 1廠每日檢查狀況",
+            "dailyworkshop2": "車間 2廠每日檢查狀況",
+            "dailyworkshop3": "車間 3廠每日檢查狀況",
+            "dailyworkshop5": "車間 5廠每日檢查狀況",
+            "dailyworkshop6": "車間 6廠每日檢查狀況",
+            "dailyworkshop7": "車間 7廠每日檢查狀況",
+            "dailyworkshop8": "車間 8廠每日檢查狀況",
+            "sewing": "車縫組",
+            "customer": "客戶",
+            "buymonth": "Buy Month",
+            "color": "顏色",
+            "style": "款式",
+            "season": "季節",
+            "size": "尺碼",
+            "inspected": "已檢查",
+            "goodgarment":"成品",
+            "defect_table": "瑕疵",
+            "rft" : "RFT",
+            "defectRate": "瑕疵率",
+            "qty": "數量",
+            "createDate": "日期",
+            "pass": "完成",
+            "defect": "瑕疵",
+            "Nodata": "无可用数据",
+            "pagenotexist": "抱歉，您访问的页面不存在"
         }
     }
 }

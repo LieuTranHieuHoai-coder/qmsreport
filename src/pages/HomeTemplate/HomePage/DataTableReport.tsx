@@ -3,6 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { DailyReportView } from "./duck/types";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
+import dayjs from 'dayjs';
 type Props = {
   valueTable: DailyReportView[];
 };
@@ -12,63 +13,15 @@ export default function TableReportComponent(props: Props) {
   const { t } = useTranslation('global');
   function defectRate(){
     cloneProps.valueTable.map((item:any) => {
+      const clonedate = dayjs(item.createDated).format('YYYY/MM/DD');
+      item.createDated = clonedate;
       item.defectRate = ((item.defectPerDay / item.qty) * 100).toFixed(2).toString() + '%'; 
     });
   }
   const columns: any = [
     {
-      name: "sewingLine",
-      label: `${t("homepage.dashboard.sewing")}`,
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
-    
-    {
-      name: "customer",
-      label: `${t("homepage.dashboard.customer")}`,
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
-    {
-      name: "buyMonth",
-      label: `${t("homepage.dashboard.buymonth")}`,
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
-    {
-      name: "season",
-      label: `${t("homepage.dashboard.season")}`,
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
-    {
-      name: "style",
-      label: `${t("homepage.dashboard.style")}`,
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
-    
-    {
-      name: "colorName",
-      label: `${t("homepage.dashboard.color")}`,
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
-    {
-      name: "sizeName",
-      label: "SizeName",
+      name: "createDated",
+      label: `${t("homepage.dashboard.inspected")}`,
       options: {
         filter: true,
         sort: true,
@@ -99,7 +52,7 @@ export default function TableReportComponent(props: Props) {
       },
     },
     {
-      name: "defectPerDay",
+      name: "defectQty",
       label: `${t("homepage.dashboard.defect_table")}`,
       options: {
         filter: true,
@@ -146,7 +99,7 @@ export default function TableReportComponent(props: Props) {
             },
             body: {
               padding: "7px 15px",
-              textAlign: "center",
+              textAlign: "left",
             },
             
             footer: {
@@ -188,7 +141,6 @@ export default function TableReportComponent(props: Props) {
           data={cloneProps.valueTable}
           columns={columns}
           options={options}
-          
         />
       </ThemeProvider>
     </>

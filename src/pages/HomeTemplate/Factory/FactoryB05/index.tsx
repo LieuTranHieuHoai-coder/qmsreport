@@ -13,10 +13,12 @@ import BarChartComponent from "./BarchartComponent";
 import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
 import DefectCodeChartComponent from "./DefectCodeChartComponent";
+import { useTranslation } from "react-i18next";
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function FactoryB05() {
   const dispatch: any = useDispatch();
+  const {t} = useTranslation("global");
   const { loading, data } = useSelector(
     (state: RootState) => state.listDailyReportReducer
   );
@@ -86,8 +88,8 @@ export default function FactoryB05() {
       return (
         <Result
           status="success"
-          title="No data available"
-          subTitle="Sorry, the page you visited does not exist."
+          title={t("homepage.dashboard.Nodata")}
+          subTitle={t("homepage.dashboard.pagenotexist")}
         />
       );
     }
@@ -103,7 +105,7 @@ export default function FactoryB05() {
       </div>
       <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
       <br />
-      <h2 className="fw-bold w-100 text-center">Thống Kê Lỗi Theo Code</h2>
+      <h2 className="fw-bold w-100 text-center">{t("homepage.dashboard.detailDefectCode")}</h2>
       <div className="col">
         <div className="w-100" style={{ height: 300 }}>
           <br />
