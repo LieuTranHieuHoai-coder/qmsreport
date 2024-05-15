@@ -30,11 +30,11 @@ export default function HomePage() {
     (state: RootState) => state.userReducer.data
   );
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!isUser) {
-      navigate("/");
-    }
-  },[]);
+  // useEffect(() => {
+  //   if (!isUser) {
+  //     navigate("/");
+  //   }
+  // },[]);
 
   type PieData = {
     id?: number;
