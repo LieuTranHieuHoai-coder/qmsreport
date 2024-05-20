@@ -21,7 +21,7 @@ export default function TableReportComponent(props: Props) {
   const columns: any = [
     {
       name: "createDated",
-      label: `${t("homepage.dashboard.inspected")}`,
+      label: `${t("homepage.dashboard.createDate")}`,
       options: {
         filter: true,
         sort: true,

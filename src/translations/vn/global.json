@@ -13,6 +13,13 @@
         "dashboard":{
             "pieTitle": "Tỷ Lệ Đạt/Lỗi",
             "qtyAllFactory" : "Số Lượng Kiểm Tất Cả Xưởng",
+            "qtyAllFactory1" : "Số Lượng Kiểm Xưởng 1",
+            "qtyAllFactory2" : "Số Lượng Kiểm Xưởng 2",
+            "qtyAllFactory3" : "Số Lượng Kiểm Xưởng 3",
+            "qtyAllFactory5" : "Số Lượng Kiểm Xưởng 5",
+            "qtyAllFactory6" : "Số Lượng Kiểm Xưởng 6",
+            "qtyAllFactory7" : "Số Lượng Kiểm Xưởng 7",
+            "qtyAllFactory8" : "Số Lượng Kiểm Xưởng 8",
             "fty1": "Xưởng 1",
             "fty2": "Xưởng 2",
             "fty3": "Xưởng 3",

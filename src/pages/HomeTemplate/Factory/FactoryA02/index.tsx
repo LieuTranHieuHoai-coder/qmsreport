@@ -92,10 +92,16 @@ export default function FactoryA02() {
         <div className="row d-flex justify-content-between align-items-center">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-9">
             <div className="w-100" style={{ height: 300 }}>
+            <h2 className="fw-bold w-100 text-center">
+              {t("homepage.dashboard.qtyAllFactory2")}
+              </h2>
               <BarChartComponent></BarChartComponent>
             </div>
           </div>
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-3" style={{ height: 300 }}>
+          <h2 className="fw-bold w-100 text-center">
+              {t("homepage.dashboard.pieTitle")}
+            </h2>
             <PieChartComponent valuePie={dataPie}></PieChartComponent>
           </div>
         </div>
