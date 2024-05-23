@@ -12,7 +12,7 @@ api.interceptors.request.use((config: any) => {
 });
 
 const apiReport = axios.create({
-  baseURL: "http://192.168.1.46:9999/",
+  baseURL: "http://qmsrp.qve.com.vn/",
 });
 
 export default { apiReport, api };

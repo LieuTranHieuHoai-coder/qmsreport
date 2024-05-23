@@ -15,6 +15,7 @@ import DefectCodeChartComponent from "./DefectCodeChartComponent";
 import TableReportComponent from "./DataTableReport";
 import { Trans, useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+
 //import 'bootstrap-icons/font/bootstrap.min.css';
 
 export default function HomePage() {
@@ -110,7 +111,7 @@ export default function HomePage() {
     if (data && data.length > 0) {
       
       return (
-        <div className="row d-flex justify-content-between align-items-center">
+        <div className="row d-flex justify-content-between align-items-center mb-5">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-9">
             <div className="w-100" style={{ height: 300 }}>
               <h2 className="fw-bold w-100 text-center">
@@ -134,7 +135,7 @@ export default function HomePage() {
   };
   return (
     <div>
-      <div className="col">
+      <div className="col mb-5">
         {renderDatePicker()}
         <br />
         <br />
@@ -154,6 +155,7 @@ export default function HomePage() {
           <DefectCodeChartComponent></DefectCodeChartComponent>
         </div>
       </div>
+      
     </div>
   );
 }

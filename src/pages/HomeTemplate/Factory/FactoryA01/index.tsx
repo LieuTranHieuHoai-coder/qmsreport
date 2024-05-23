@@ -109,7 +109,9 @@ export default function FactoryA01() {
         <br />
         {renderChart()}
       </div>
-      <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
+      <div className="col mt-5">
+        <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
+      </div>
       <br />
       <h2 className="fw-bold w-100 text-center">{t("homepage.dashboard.detailDefectCode")}</h2>
       <div className="col">

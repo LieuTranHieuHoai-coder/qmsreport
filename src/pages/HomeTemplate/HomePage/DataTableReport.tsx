@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 type Props = {
   valueTable: DailyReportView[];
 };
+
 export default function TableReportComponent(props: Props) {
   const { valueTable } = props;
   const cloneProps = {...props}
@@ -132,6 +133,8 @@ export default function TableReportComponent(props: Props) {
     
   };
 
+  /* test export */
+
   return (
     <>
       {defectRate()}
@@ -143,6 +146,7 @@ export default function TableReportComponent(props: Props) {
           options={options}
         />
       </ThemeProvider>
+      
     </>
   );
 }
