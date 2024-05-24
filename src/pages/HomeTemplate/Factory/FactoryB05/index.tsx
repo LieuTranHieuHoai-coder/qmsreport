@@ -100,7 +100,7 @@ export default function FactoryB05() {
       );
     }
   };
-
+  
   return (
     <div>
       <div className="col">
