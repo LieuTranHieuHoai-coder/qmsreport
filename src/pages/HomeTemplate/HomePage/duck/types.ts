@@ -19,6 +19,7 @@ export interface DailyReportView {
     brokenQty?: number;
     defectPerDay?: number;
     defectRate?: string;
+    passRate?: string;
 }
 
 export interface ChartDefectCodeView {

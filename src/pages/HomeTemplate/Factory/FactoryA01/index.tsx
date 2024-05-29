@@ -42,6 +42,7 @@ export default function FactoryA01() {
   const { RangePicker } = DatePicker;
   const dateFormat = "YYYY/MM/DD";
   const date = new Date();
+  
   const today = dayjs(date).format(dateFormat);
   const [selectDate, setDaterange] = useState<[string,string]>();
   const handleChange = (dates: any, dateStrings: [string, string]) => {
@@ -60,10 +61,11 @@ export default function FactoryA01() {
     [selectDate]
   );
   dayjs.extend(customParseFormat);
+  const currentDate = dayjs().get('year') + '/' + (dayjs().get('month') + 1) + '/' + dayjs().get('date');
   const renderDatePicker = () => {
     return (
       <>
-        <RangePicker format={dateFormat} onChange={handleChange}/>
+        <RangePicker defaultValue={[dayjs(currentDate),dayjs(currentDate)]} format={dateFormat} onChange={handleChange}/>
       </>
     );
   };
@@ -95,7 +97,7 @@ export default function FactoryA01() {
         <Result
           status="success"
           title={t("homepage.dashboard.Nodata")}
-          subTitle={t("homepage.dashboard.pagenotexist")}
+          
         />
       );
     }

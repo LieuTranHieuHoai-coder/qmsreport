@@ -56,13 +56,13 @@ export default function Header() {
   const items: MenuItem[] = [
     getItem("Dashboard", "1", <PieChartOutlined />, [], "/home/index"),
     getItem("Factory", "2", <BankOutlined />, [
-      getItem("Factory A01", "3", <RightCircleOutlined />, [], "FactoryA01"),
-      getItem("Factory A02", "5", <RightCircleOutlined />, [], "FactoryA02"),
-      getItem("Factory A08", "6", <RightCircleOutlined />,[], "FactoryA08"),
-      getItem("Factory B05", "7", <RightCircleOutlined />,[], "FactoryB05"),
-      getItem("Factory B06", "8", <RightCircleOutlined />,[], "FactoryB06"),
-      getItem("Factory C03", "9", <RightCircleOutlined />,[], "FactoryC03"),
-      getItem("Factory C07", "10", <RightCircleOutlined />,[], "FactoryC07"),
+      getItem("Factory A01", "3", <RightCircleOutlined />, [], "/home/FactoryA01"),
+      getItem("Factory A02", "5", <RightCircleOutlined />, [], "/home/FactoryA02"),
+      getItem("Factory A08", "6", <RightCircleOutlined />,[], "/home/FactoryA08"),
+      getItem("Factory B05", "7", <RightCircleOutlined />,[], "/home/FactoryB05"),
+      getItem("Factory B06", "8", <RightCircleOutlined />,[], "/home/FactoryB06"),
+      getItem("Factory C03", "9", <RightCircleOutlined />,[], "/home/FactoryC03"),
+      getItem("Factory C07", "10", <RightCircleOutlined />,[], "/home/FactoryC07"),
     ]),
     // getItem("User", "sub1", <UserOutlined />, [
     //   getItem("Tom", "3"),

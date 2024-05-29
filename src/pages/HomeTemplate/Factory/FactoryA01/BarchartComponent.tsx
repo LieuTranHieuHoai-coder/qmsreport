@@ -23,7 +23,6 @@ export default function BarChartComponent() {
     passQty?: number;
     defectQty?: number;
   }
-
   function fillData() {
     if (data) {
       data.forEach((item: any) => {
@@ -44,8 +43,6 @@ export default function BarChartComponent() {
       });
     }
   }
-
-
   const renderCustomizedLabel = (props: any) => {
     const { x, y, width, value, index } = props;
     const radius = 10;
@@ -85,7 +82,6 @@ export default function BarChartComponent() {
       </g>
     );
   };
-
   return (
     <>
       {fillData()}

@@ -60,10 +60,11 @@ export default function FactoryB05() {
     [selectDate]
   );
   dayjs.extend(customParseFormat);
+  const currentDate = dayjs().get('year') + '/' + (dayjs().get('month') + 1) + '/' + dayjs().get('date');
   const renderDatePicker = () => {
     return (
       <>
-        <RangePicker format={dateFormat} onChange={handleChange}/>
+        <RangePicker defaultValue={[dayjs(currentDate),dayjs(currentDate)]} format={dateFormat} onChange={handleChange}/>
       </>
     );
   };
@@ -95,7 +96,7 @@ export default function FactoryB05() {
         <Result
           status="success"
           title={t("homepage.dashboard.Nodata")}
-          subTitle={t("homepage.dashboard.pagenotexist")}
+          
         />
       );
     }

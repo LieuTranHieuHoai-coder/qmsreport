@@ -12,17 +12,19 @@ export default function TableReportComponent(props: Props) {
   const { valueTable } = props;
   const cloneProps = {...props}
   const { t } = useTranslation('global');
+  //console.log(valueTable);
   function defectRate(){
     cloneProps.valueTable.map((item:any) => {
       const clonedate = dayjs(item.createDated).format('YYYY/MM/DD');
       item.createDated = clonedate;
-      item.defectRate = ((item.defectPerDay / item.qty) * 100).toFixed(2).toString() + '%'; 
+      item.defectRate = ((item.defectQty / item.qty) * 100).toFixed(2).toString() + '%'; 
+      item.passRate = ((item.passQty / item.qty) * 100).toFixed(2).toString() + '%'; 
     });
   }
   const columns: any = [
     {
-      name: "createDated",
-      label: `${t("homepage.dashboard.createDate")}`,
+      name: "floor",
+      label: `${t("homepage.dashboard.fty")}`,
       options: {
         filter: true,
         sort: true,
@@ -60,7 +62,6 @@ export default function TableReportComponent(props: Props) {
         sort: true,
       },
     },
-
     {
       name: "defectRate",
       label: `${t("homepage.dashboard.defectRate")}`,

@@ -11,10 +11,6 @@ type PieData = {
   value: number;
 };
 const CustomColor: string[] = ["#1253f2", "#f21262"];
-// const data: PieData[] = [
-//   { name: "Pass", value: 400 },
-//   { name: "Defect", value: 300 },
-// ];
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;

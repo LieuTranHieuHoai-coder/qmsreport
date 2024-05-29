@@ -98,10 +98,11 @@ export default function HomePage() {
     [selectDate]
   );
   dayjs.extend(customParseFormat);
+  const currentDate = dayjs().get('year') + '/' + (dayjs().get('month') + 1) + '/' + dayjs().get('date');
   const renderDatePicker = () => {
     return (
       <>
-        <RangePicker format={dateFormat} onChange={handleChange} />
+        <RangePicker defaultValue={[dayjs(currentDate),dayjs(currentDate)]} format={dateFormat} onChange={handleChange}/>
       </>
     );
   };

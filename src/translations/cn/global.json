@@ -12,6 +12,7 @@
         "dashboard":{
             "pieTitle": "瑕疵率",
             "qtyAllFactory" : "所有工廠數量",
+            "fty": "車間",
             "fty1": "車間 1廠",
             "fty2": "車間 2廠",
             "fty3": "車間 3廠",

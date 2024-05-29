@@ -19,7 +19,7 @@ export const actFetchListData = (
           fd +
           "&td=" +
           td +
-          "site=" +
+          "&site=" +
           site +
           "&line=" +
           line +

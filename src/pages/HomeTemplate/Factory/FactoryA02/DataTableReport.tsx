@@ -266,27 +266,6 @@ export default function TableReportComponent(props: Props) {
           options={options}
         />
       </ThemeProvider>
-
-      {/* <div className="table-responsive">
-      <button
-        className="btn btn-primary float-end mt-2 mb-2"
-        onClick={exportExcelFile}
-      >
-        Export
-      </button>
-        <table className="table table-primary">
-          <thead>
-            <tr>
-              <th scope="col">{`${t("homepage.dashboard.sewing")}`}</th>
-              <th scope="col">{`${t("homepage.dashboard.color")}`}</th>
-              <th scope="col">{`${t("homepage.dashboard.size")}`}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {returnDataTable()}
-          </tbody>
-        </table>
-      </div> */}
     </>
   );
 }
