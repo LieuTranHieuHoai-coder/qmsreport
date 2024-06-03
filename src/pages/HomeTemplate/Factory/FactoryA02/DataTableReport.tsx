@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { DailyReportView } from "./duck/types";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import ExcelJS from 'exceljs';
+import apiUtil from "../../../../utils/apiUtil";
+import saveAs from "file-saver";
+import { Button } from "antd";
+import { DownloadOutlined } from "@ant-design/icons";
 // import ReactExport from 'react-data-export';
 // const ExcelFile = ReactExport.ExcelFile;
 // const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -182,82 +186,35 @@ export default function TableReportComponent(props: Props) {
       displayRows: "of",
     },
   };
-  const exportExcelFile = () => {
-    const workbook = new ExcelJS.Workbook();
-    const sheet = workbook.addWorksheet("QMS Excel");
-    sheet.properties.defaultRowHeight = 80;
 
-    sheet.columns = [
-      {
-        header: t("homepage.dashboard.sewing"),
-        key: "sewingLine",
-        width: 20,
-      },
-      {
-        header: t("homepage.dashboard.color"),
-        key: "colorName",
-        width: 20,
-      },
-      {
-        header: t("homepage.dashboard.size"),
-        key: "sizeName",
-        width: 20,
-      }
-    ];
+  const [loadingExcel, setLoading] = useState(false);
 
-    cloneProps.valueTable.map((item:any) =>{
-      sheet.addRow({
-        sewingLine: item.sewingLine,
-        colorName: item.colorName,
-        sizeName: item.sizeName,
+  const downloadExcel = async () => {
+    setLoading(true);
+
+    try {
+      const response = await apiUtil.apiReport.get("qc/excel/DownloadExcel", {
+        responseType: 'blob',
       });
-    })
 
-    
-    sheet.getColumn(1).border = {
-      top: { style: "thin" },
-        left: { style: "thin" },
-        bottom: { style: "thin" },
-        right: { style: "thin" }
-    };
-    sheet.getRow(1).fill = {
-      type: "pattern",
-      pattern: "solid",
-      fgColor: { argb: "ADFF2F" },
-    };
-
-    workbook.xlsx.writeBuffer().then(function (data) {
-      const blob = new Blob([data], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      const blob = new Blob([response.data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       });
-      const url = window.URL.createObjectURL(blob);
-      const anchor = document.createElement("a");
-      anchor.href = url;
-      anchor.download = "download.xlsx";
-      anchor.click();
-      window.URL.revokeObjectURL(url);
-    });
-  }
 
-  function returnDataTable(){
-    return cloneProps.valueTable.map((item: any) => {
-      return(
-        <>
-            <tr>
-              <td scope="row">{item.sewingLine}</td>
-              <td scope="row">{item.colorName}</td>
-              <td scope="row">{item.sizeName}</td>
-            </tr>
-        </>
-      )
-    });
+      saveAs(blob, 'ExcelData.xlsx');
+    } catch (error:any) {
+      console.log('Error downloading Excel file:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-
-    
-  }
   return (
     <>
       {defectRate()}
+      <Button type="primary" icon={<DownloadOutlined />} size="large" loading={loadingExcel} onClick={downloadExcel}>
+          Download Excel
+      </Button>
       <ThemeProvider theme={getMuiTheme()}>
         <MUIDataTable
           title={t("homepage.dashboard.dailyworkshop2")}

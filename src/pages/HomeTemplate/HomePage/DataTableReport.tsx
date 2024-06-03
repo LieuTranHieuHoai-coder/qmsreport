@@ -23,6 +23,14 @@ export default function TableReportComponent(props: Props) {
   }
   const columns: any = [
     {
+      name: "createDated",
+      label: `${t("homepage.dashboard.createDate")}`,
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
       name: "floor",
       label: `${t("homepage.dashboard.fty")}`,
       options: {

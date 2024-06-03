@@ -148,10 +148,10 @@ export default function BarChartComponent() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pass" fill="#1253f2" minPointSize={5}>
+          <Bar dataKey="pass" fill="#1253f2" minPointSize={0}>
             <LabelList dataKey="name" content={renderCustomizedLabel} />
           </Bar>
-          <Bar dataKey="defect" fill="#f21262" minPointSize={10}>
+          <Bar dataKey="defect" fill="#f21262" minPointSize={0}>
             <LabelList dataKey="name" content={renderCustomizedLabel2} />
           </Bar>
         </BarChart>

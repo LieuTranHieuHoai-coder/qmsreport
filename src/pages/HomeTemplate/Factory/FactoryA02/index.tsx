@@ -2,9 +2,7 @@ import { useEffect, useMemo, useState, useTransition } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actFetchDefectChart, actFetchListData } from "./duck/actions";
 import { RootState } from "../../../../store";
-import { DailyReportView } from "./duck/types";
-import type { DatePickerProps } from "antd";
-import { DatePicker, Result, Space } from "antd";
+import { Button, DatePicker, Result, Space } from "antd";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import "bootstrap/js/dist/collapse";
 import "bootstrap/js/dist/dropdown";
@@ -14,7 +12,10 @@ import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
 import DefectCodeChartComponent from "./DefectCodeChartComponent";
 import { useTranslation } from "react-i18next";
-//import 'bootstrap-icons/font/bootstrap.min.css';
+import { DownloadOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import apiUtil from "../../../../utils/apiUtil";
+import { saveAs } from 'file-saver';
 
 export default function FactoryA02() {
   const dispatch: any = useDispatch();
@@ -74,7 +75,6 @@ export default function FactoryA02() {
       ),
     [selectDate]
   );
-
   dayjs.extend(customParseFormat);
   const currentDate = dayjs().get('year') + '/' + (dayjs().get('month') + 1) + '/' + dayjs().get('date');
   const renderDatePicker = () => {
@@ -118,6 +118,7 @@ export default function FactoryA02() {
     }
   };
 
+  
   return (
     <div>
       <div className="col">
@@ -138,6 +139,8 @@ export default function FactoryA02() {
           <DefectCodeChartComponent></DefectCodeChartComponent>
         </div>
       </div>
+      <br />
+      
     </div>
   );
 }
