@@ -3,14 +3,10 @@ import MUIDataTable from "mui-datatables";
 import { DailyReportView } from "./duck/types";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import ExcelJS from 'exceljs';
 import apiUtil from "../../../../utils/apiUtil";
 import saveAs from "file-saver";
 import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
-// import ReactExport from 'react-data-export';
-// const ExcelFile = ReactExport.ExcelFile;
-// const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 type Props = {
   valueTable: DailyReportView[];
 };
@@ -25,14 +21,14 @@ export default function TableReportComponent(props: Props) {
     });
   }
   const columns: any = [
-    {
-      name: "sewingLine",
-      label: `${t("homepage.dashboard.sewing")}`,
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
+    // {
+    //   name: "sewingLine",
+    //   label: `${t("homepage.dashboard.sewing")}`,
+    //   options: {
+    //     filter: true,
+    //     sort: true,
+    //   },
+    // },
 
     {
       name: "customer",
@@ -186,14 +182,14 @@ export default function TableReportComponent(props: Props) {
       displayRows: "of",
     },
   };
-
+  
   const [loadingExcel, setLoading] = useState(false);
 
   const downloadExcel = async () => {
     setLoading(true);
 
     try {
-      const response = await apiUtil.apiReport.get("qc/excel/DownloadExcel", {
+      const response = await apiUtil.apiReport.post("qc/excel/DownloadExcel", cloneProps.valueTable, {
         responseType: 'blob',
       });
 
@@ -212,9 +208,10 @@ export default function TableReportComponent(props: Props) {
   return (
     <>
       {defectRate()}
-      <Button type="primary" icon={<DownloadOutlined />} size="large" loading={loadingExcel} onClick={downloadExcel}>
+      <Button type="primary" icon={<DownloadOutlined />} size="large" loading={loadingExcel} onClick={downloadExcel} className="mb-3">
           Download Excel
       </Button>
+      <br/>   
       <ThemeProvider theme={getMuiTheme()}>
         <MUIDataTable
           title={t("homepage.dashboard.dailyworkshop2")}

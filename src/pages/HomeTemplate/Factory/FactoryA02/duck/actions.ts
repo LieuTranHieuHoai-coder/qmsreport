@@ -15,7 +15,7 @@ export const actFetchListData = (
 
     client.apiReport
       .get(
-        "qc/report/DailyReport?fd=" +
+        "qc/report/DReport_NotByLineSize?fd=" +
           fd +
           "&td=" +
           td +

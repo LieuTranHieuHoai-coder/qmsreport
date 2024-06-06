@@ -67,6 +67,19 @@ export default function FactoryA02() {
   useEffect(
     () =>
       dispatch(
+        actFetchListData(
+          selectDate ? selectDate?.[0] : today,
+          selectDate ? selectDate?.[1] : today,
+          "QVN",
+          "",
+          "Factory A02"
+        )
+      ),
+    [selectDate]
+  );
+  useEffect(
+    () =>
+      dispatch(
         actFetchDefectChart(
           selectDate ? selectDate?.[0] : today,
           selectDate ? selectDate?.[1] : today,
