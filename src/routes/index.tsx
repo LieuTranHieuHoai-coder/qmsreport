@@ -1,11 +1,7 @@
 import { Route } from "react-router-dom";
-import AuthenPage from "../pages/AuthenPage";
-import AboutPage from "../pages/HomeTemplate/AboutPage";
 import HomePage from "../pages/HomeTemplate/HomePage";
-import ListMoviePage from "../pages/HomeTemplate/ListMoviePage";
 import HomeTemplate from "../pages/HomeTemplate";
 import HooksPage from "../pages/HomeTemplate/HooksPage";
-import DetailMovie from "../pages/HomeTemplate/DetailMovie";
 import FactoryA01 from "../pages/HomeTemplate/Factory/FactoryA01";
 import FactoryA08 from "../pages/HomeTemplate/Factory/FactoryA08";
 import FactoryA02 from "../pages/HomeTemplate/Factory/FactoryA02";
@@ -27,10 +23,7 @@ const routes: TRoute[] = [
     element: HomeTemplate,
     nested: [
       { path: "index", element: HomePage },
-      { path: "about", element: AboutPage },
-      { path: "list-movie", element: ListMoviePage },
       { path: "hooks", element: HooksPage },
-      { path: "detail/:id", element: DetailMovie },
       { path: "FactoryA01", element: FactoryA01 },
       { path: "FactoryA02", element: FactoryA02 },
       { path: "FactoryA08", element: FactoryA08 },

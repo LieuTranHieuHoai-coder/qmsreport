@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actFetchDefectChart, actFetchListData } from "./duck/actions";
+import { actFetchDefectChart, actFetchListData , actFetchListDataExcel} from "./duck/actions";
 import { RootState } from "../../../../store";
 import { Button, DatePicker, Result, Space } from "antd";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -12,15 +12,11 @@ import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
 import DefectCodeChartComponent from "./DefectCodeChartComponent";
 import { useTranslation } from "react-i18next";
-import { DownloadOutlined } from '@ant-design/icons';
-import axios from 'axios';
-import apiUtil from "../../../../utils/apiUtil";
-import { saveAs } from 'file-saver';
 
 export default function FactoryA02() {
   const dispatch: any = useDispatch();
   const { t } = useTranslation('global');
-  const { loading, data } = useSelector(
+  const { loading, data, dataExcel } = useSelector(
     (state: RootState) => state.listDailyReportReducer
   );
   type PieData = {
@@ -67,7 +63,7 @@ export default function FactoryA02() {
   useEffect(
     () =>
       dispatch(
-        actFetchListData(
+        actFetchListDataExcel(
           selectDate ? selectDate?.[0] : today,
           selectDate ? selectDate?.[1] : today,
           "QVN",
@@ -77,6 +73,7 @@ export default function FactoryA02() {
       ),
     [selectDate]
   );
+  console.log(dataExcel);
   useEffect(
     () =>
       dispatch(
@@ -141,7 +138,7 @@ export default function FactoryA02() {
         {renderChart()}
       </div>
       <div className="col mt-5">
-        <TableReportComponent valueTable={data ? data : []}></TableReportComponent>
+        <TableReportComponent valueExcel={dataExcel ? dataExcel: []} fd={selectDate ? selectDate?.[0] : today} td={selectDate ? selectDate?.[1] : today}></TableReportComponent>
       </div>
       
       <br />

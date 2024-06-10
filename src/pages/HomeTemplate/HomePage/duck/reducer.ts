@@ -32,6 +32,26 @@ const listDailyReportReducer = (state = initialState, action: Action) => {
       return { ...state };
     }
 
+    case ActionType.LIST_DAILYREPORT_EXCEL_REQUEST: {
+      state.loadingExcel = true;
+      state.dataExcel = null;
+      state.errorExcel = null;
+      return { ...state };
+    }
+
+    case ActionType.LIST_DAILYREPORT_EXCEL_SUCCESS: {
+      state.loadingExcel = false;
+      state.dataExcel = action.payload;
+      state.errorExcel = null;
+      return { ...state };
+    }
+
+    case ActionType.LIST_DAILYREPORT_EXCEL_FAILED: {
+      state.loadingExcel = false;
+      state.dataExcel = null;
+      state.errorExcel = action.payload;
+      return { ...state };
+    }
     default:
       return { ...state };
   }

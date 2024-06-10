@@ -144,3 +144,52 @@ const actDBTableFailed = (error: any): Action => {
     payload: error,
   };
 };
+
+
+
+export const actFetchListDataExcel = (
+  fd?: string,
+  td?: string,
+  site?: string,
+  line?: string,
+  fty?: string
+) => {
+  return (dispatch: any) => {
+    dispatch(actListRequestExcel());
+
+    client.apiReport
+      .get(
+        "qc/report/DReport_NotByLineSize?fd=" +
+          fd +
+          "&td=" +
+          td +
+          "&site=" +
+          site +
+          "&fty=" +
+          fty
+      )
+      .then((result) => {
+        dispatch(actListSuccessExcel(result.data));
+      })
+      .catch((error) => {
+        dispatch(actListFailedExcel(error));
+      });
+  };
+};
+const actListRequestExcel = (): Action => {
+  return {
+    type: ActionType.LIST_DAILYREPORT_EXCEL_REQUEST,
+  };
+};
+const actListSuccessExcel = (data: DailyReportView[]): Action => {
+  return {
+    type: ActionType.LIST_DAILYREPORT_EXCEL_SUCCESS,
+    payload: data,
+  };
+};
+const actListFailedExcel = (error: any): Action => {
+  return {
+    type: ActionType.LIST_DAILYREPORT_EXCEL_FAILED,
+    payload: error,
+  };
+};

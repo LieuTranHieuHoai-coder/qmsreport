@@ -15,7 +15,7 @@ export const actFetchListData = (
 
     client.apiReport
       .get(
-        "qc/report/DReport_NotByLineSize?fd=" +
+        "qc/report/DailyReport?fd=" +
           fd +
           "&td=" +
           td +
@@ -34,20 +34,17 @@ export const actFetchListData = (
       });
   };
 };
-
 const actListRequest = (): Action => {
   return {
     type: ActionType.LIST_DAILYREPORT_REQUEST,
   };
 };
-
 const actListSuccess = (data: DailyReportView[]): Action => {
   return {
     type: ActionType.LIST_DAILYREPORT_SUCCESS,
     payload: data,
   };
 };
-
 const actListFailed = (error: any): Action => {
   return {
     type: ActionType.LIST_DAILYREPORT_FAILED,
@@ -82,23 +79,68 @@ export const actFetchDefectChart = (
       });
   };
 };
-
 const actDefectChartRequest = (): Action => {
   return {
     type: ActionType.LIST_CHARTREPORT_REQUEST,
   };
 };
-
 const actDefectChartSuccess = (data: DailyReportView[]): Action => {
   return {
     type: ActionType.LIST_CHARTREPORT_SUCCESS,
     payload: data,
   };
 };
-
 const actDefectChartFailed = (error: any): Action => {
   return {
     type: ActionType.LIST_CHARTREPORT_FAILED,
+    payload: error,
+  };
+};
+
+
+export const actFetchListDataExcel = (
+  fd?: string,
+  td?: string,
+  site?: string,
+  line?: string,
+  fty?: string
+) => {
+  return (dispatch: any) => {
+    dispatch(actListRequestExcel());
+
+    client.apiReport
+      .get(
+        "qc/report/DReport_NotByLineSize?fd=" +
+          fd +
+          "&td=" +
+          td +
+          "&site=" +
+          site +
+          "&fty=" +
+          fty
+      )
+      .then((result) => {
+        dispatch(actListSuccessExcel(result.data));
+      })
+      .catch((error) => {
+        dispatch(actListFailedExcel(error));
+      });
+  };
+};
+const actListRequestExcel = (): Action => {
+  return {
+    type: ActionType.LIST_DAILYREPORT_EXCEL_REQUEST,
+  };
+};
+const actListSuccessExcel = (data: DailyReportView[]): Action => {
+  return {
+    type: ActionType.LIST_DAILYREPORT_EXCEL_SUCCESS,
+    payload: data,
+  };
+};
+const actListFailedExcel = (error: any): Action => {
+  return {
+    type: ActionType.LIST_DAILYREPORT_EXCEL_FAILED,
     payload: error,
   };
 };

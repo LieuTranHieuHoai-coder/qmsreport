@@ -7,15 +7,18 @@ import apiUtil from "../../../../utils/apiUtil";
 import saveAs from "file-saver";
 import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
+
 type Props = {
-  valueTable: DailyReportView[];
+  valueExcel: DailyReportView[];
+  fd?: string;
+  td?: string;
 };
 export default function TableReportComponent(props: Props) {
-  const { valueTable } = props;
+  const { valueExcel } = props;
   const cloneProps = { ...props };
   const { t } = useTranslation("global");
   function defectRate() {
-    cloneProps.valueTable.map((item: any) => {
+    cloneProps.valueExcel.map((item: any) => {
       item.defectRate =
         ((item.defectPerDay / item.qty) * 100).toFixed(2).toString() + "%";
     });
@@ -71,14 +74,14 @@ export default function TableReportComponent(props: Props) {
         sort: true,
       },
     },
-    {
-      name: "sizeName",
-      label: `${t("homepage.dashboard.size")}`,
-      options: {
-        filter: true,
-        sort: true,
-      },
-    },
+    // {
+    //   name: "sizeName",
+    //   label: `${t("homepage.dashboard.size")}`,
+    //   options: {
+    //     filter: true,
+    //     sort: true,
+    //   },
+    // },
     {
       name: "qty",
       label: `${t("homepage.dashboard.inspected")}`,
@@ -182,14 +185,15 @@ export default function TableReportComponent(props: Props) {
       displayRows: "of",
     },
   };
-  
+
+   
   const [loadingExcel, setLoading] = useState(false);
 
   const downloadExcel = async () => {
     setLoading(true);
 
     try {
-      const response = await apiUtil.apiReport.post("qc/excel/DownloadExcel", cloneProps.valueTable, {
+      const response = await apiUtil.apiReport.post(`qc/excel/DownloadExcel?fd=${cloneProps.fd}&td=${cloneProps.td}&fty=Factory A02`, cloneProps.valueExcel, {
         responseType: 'blob',
       });
 
@@ -208,14 +212,13 @@ export default function TableReportComponent(props: Props) {
   return (
     <>
       {defectRate()}
-      <Button type="primary" icon={<DownloadOutlined />} size="large" loading={loadingExcel} onClick={downloadExcel} className="mb-3">
+      <Button type="primary" icon={<DownloadOutlined />} size="large" loading={loadingExcel} onClick={downloadExcel}>
           Download Excel
       </Button>
-      <br/>   
       <ThemeProvider theme={getMuiTheme()}>
         <MUIDataTable
           title={t("homepage.dashboard.dailyworkshop2")}
-          data={cloneProps.valueTable}
+          data={cloneProps.valueExcel}
           columns={columns}
           options={options}
         />
