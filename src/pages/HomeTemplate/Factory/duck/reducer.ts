@@ -1,7 +1,7 @@
-import { Action } from "../../../../../store/types";
+import { Action } from "../../../../store/types";
 import * as ActionType from "./constants";
 import { DailyReportView } from "./types";
-import { AppState } from "./../../../../../store/types";
+import { AppState } from "./../../../../store/types";
 
 const initialState: AppState<DailyReportView> = {
   loading: false,

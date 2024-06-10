@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { actFetchDefectChart, actFetchListData , actFetchListDataExcel} from "./duck/actions";
+import { actFetchDefectChart, actFetchListData , actFetchListDataExcel} from "./../duck/actions";
 import { RootState } from "../../../../store";
 import { Button, DatePicker, Result, Space } from "antd";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -12,10 +12,12 @@ import dayjs, { Dayjs } from "dayjs";
 import TableReportComponent from "./DataTableReport";
 import DefectCodeChartComponent from "./DefectCodeChartComponent";
 import { useTranslation } from "react-i18next";
-
+import { useParams, useLocation } from 'react-router-dom';
 export default function FactoryA02() {
   const dispatch: any = useDispatch();
   const { t } = useTranslation('global');
+  const location = useLocation();
+  let fty = location.pathname.split("/").pop();
   const { loading, data, dataExcel } = useSelector(
     (state: RootState) => state.listDailyReportReducer
   );
@@ -47,44 +49,232 @@ export default function FactoryA02() {
   const handleChange = (dates: any, dateStrings: [string, string]) => {
     setDaterange(dateStrings);
   };
+  const [titleBar,setTitleBar] = useState(t("homepage.dashboard.qtyAllFactory1"));
   useEffect(
-    () =>
-      dispatch(
-        actFetchListData(
-          selectDate ? selectDate?.[0] : today,
-          selectDate ? selectDate?.[1] : today,
-          "QVN",
-          "",
-          "Factory A02"
-        )
-      ),
-    [selectDate]
+    () =>{
+      switch (fty) {
+        case "FactoryA01":{
+          setTitleBar(()=> {
+            return t("homepage.dashboard.qtyAllFactory1");
+          });
+          dispatch(
+            actFetchListData(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory A01"
+            )
+          );
+          dispatch(
+            actFetchListDataExcel(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory A01"
+            )
+          );
+          dispatch(
+            actFetchDefectChart(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "Factory A01"
+            )
+          );
+          break;
+        }
+        case "FactoryA02":{
+          setTitleBar(()=> {
+            return t("homepage.dashboard.qtyAllFactory2");
+          });
+          dispatch(
+            actFetchListData(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory A02"
+            )
+          );
+          dispatch(
+            actFetchListDataExcel(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory A02"
+            )
+          );
+          dispatch(
+            actFetchDefectChart(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "Factory A02"
+            )
+          );
+          break;
+        }
+        case "FactoryA08":{
+          setTitleBar(()=> {
+            return t("homepage.dashboard.qtyAllFactory8");
+          });
+          dispatch(
+            actFetchListData(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory A08"
+            )
+          );
+          dispatch(
+            actFetchListDataExcel(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory A08"
+            )
+          );
+          dispatch(
+            actFetchDefectChart(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "Factory A08"
+            )
+          );
+          break;
+        }
+        case "FactoryB05":{
+          setTitleBar(()=> {
+            return t("homepage.dashboard.qtyAllFactory5");
+          });
+          dispatch(
+            actFetchListData(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory B05"
+            )
+          );
+          dispatch(
+            actFetchListDataExcel(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory B05"
+            )
+          );
+          dispatch(
+            actFetchDefectChart(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "Factory B05"
+            )
+          );
+          break;
+        }
+        case "FactoryB06":{
+          setTitleBar(()=> {
+            return t("homepage.dashboard.qtyAllFactory6");
+          });
+          dispatch(
+            actFetchListData(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory B06"
+            )
+          );
+          dispatch(
+            actFetchListDataExcel(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory B06"
+            )
+          );
+          dispatch(
+            actFetchDefectChart(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "Factory B06"
+            )
+          );
+          break;
+        }
+        case "FactoryC03":{
+          setTitleBar(()=> {
+            return t("homepage.dashboard.qtyAllFactory3");
+          });
+          dispatch(
+            actFetchListData(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory C03"
+            )
+          );
+          dispatch(
+            actFetchListDataExcel(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory C03"
+            )
+          );
+          dispatch(
+            actFetchDefectChart(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "Factory C03"
+            )
+          );
+          break;
+        }
+        case "FactoryC07":{
+          setTitleBar(()=> {
+            return t("homepage.dashboard.qtyAllFactory7");
+          });
+          dispatch(
+            actFetchListData(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory C07"
+            )
+          );
+          dispatch(
+            actFetchListDataExcel(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "QVN",
+              "",
+              "Factory C07"
+            )
+          );
+          dispatch(
+            actFetchDefectChart(
+              selectDate? selectDate?.[0] : today,
+              selectDate? selectDate?.[1] : today,
+              "Factory C07"
+            )
+          );
+          break;
+        }
+      }
+    },
+    [selectDate, location]
   );
-  useEffect(
-    () =>
-      dispatch(
-        actFetchListDataExcel(
-          selectDate ? selectDate?.[0] : today,
-          selectDate ? selectDate?.[1] : today,
-          "QVN",
-          "",
-          "Factory A02"
-        )
-      ),
-    [selectDate]
-  );
-  console.log(dataExcel);
-  useEffect(
-    () =>
-      dispatch(
-        actFetchDefectChart(
-          selectDate ? selectDate?.[0] : today,
-          selectDate ? selectDate?.[1] : today,
-          "Factory A02"
-        )
-      ),
-    [selectDate]
-  );
+
   dayjs.extend(customParseFormat);
   const currentDate = dayjs().get('year') + '/' + (dayjs().get('month') + 1) + '/' + dayjs().get('date');
   const renderDatePicker = () => {
@@ -94,17 +284,15 @@ export default function FactoryA02() {
       </>
     );
   };
-
-  const renderChart = () => {
+  const renderChart = () => {  
     if (loading) return <div>Loading...</div>;
-    
     if (data && data.length > 0) {
       return (
         <div className="row d-flex justify-content-between align-items-center">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-9">
             <div className="w-100" style={{ height: 300 }}>
             <h2 className="fw-bold w-100 text-center">
-              {t("homepage.dashboard.qtyAllFactory2")}
+              {titleBar}
               </h2>
               <BarChartComponent></BarChartComponent>
             </div>
@@ -128,7 +316,6 @@ export default function FactoryA02() {
     }
   };
 
-  
   return (
     <div>
       <div className="col">
@@ -138,7 +325,7 @@ export default function FactoryA02() {
         {renderChart()}
       </div>
       <div className="col mt-5">
-        <TableReportComponent valueExcel={dataExcel ? dataExcel: []} fd={selectDate ? selectDate?.[0] : today} td={selectDate ? selectDate?.[1] : today}></TableReportComponent>
+        <TableReportComponent valueExcel={dataExcel ? dataExcel: []} fd={selectDate ? selectDate?.[0] : today} td={selectDate ? selectDate?.[1] : today} fty={fty}/>
       </div>
       
       <br />

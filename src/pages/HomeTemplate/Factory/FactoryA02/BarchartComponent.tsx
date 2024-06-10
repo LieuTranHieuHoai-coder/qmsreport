@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../../store";
-import { DailyReportView } from "./duck/types";
+import { DailyReportView } from "./../duck/types";
 
 export default function BarChartComponent() {
   const { loading, data } = useSelector(
@@ -104,10 +104,10 @@ export default function BarChartComponent() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="PASS" fill="#1253f2" minPointSize={5}>
+          <Bar dataKey="PASS" fill="#1253f2" minPointSize={0}>
             <LabelList dataKey="sewingLine" content={renderCustomizedLabel} />
           </Bar>
-          <Bar dataKey="DEFECT" fill="#f21262" minPointSize={10}>
+          <Bar dataKey="DEFECT" fill="#f21262" minPointSize={0}>
             <LabelList dataKey="sewingLine" content={renderCustomizedLabel2} />
           </Bar>
         </BarChart>

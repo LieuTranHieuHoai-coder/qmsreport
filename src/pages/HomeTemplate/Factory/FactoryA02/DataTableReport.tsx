@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
-import { DailyReportView } from "./duck/types";
+import { DailyReportView } from "./../duck/types";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import apiUtil from "../../../../utils/apiUtil";
@@ -12,6 +12,7 @@ type Props = {
   valueExcel: DailyReportView[];
   fd?: string;
   td?: string;
+  fty?: string;
 };
 export default function TableReportComponent(props: Props) {
   const { valueExcel } = props;
@@ -24,15 +25,6 @@ export default function TableReportComponent(props: Props) {
     });
   }
   const columns: any = [
-    // {
-    //   name: "sewingLine",
-    //   label: `${t("homepage.dashboard.sewing")}`,
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //   },
-    // },
-
     {
       name: "customer",
       label: `${t("homepage.dashboard.customer")}`,
@@ -74,14 +66,6 @@ export default function TableReportComponent(props: Props) {
         sort: true,
       },
     },
-    // {
-    //   name: "sizeName",
-    //   label: `${t("homepage.dashboard.size")}`,
-    //   options: {
-    //     filter: true,
-    //     sort: true,
-    //   },
-    // },
     {
       name: "qty",
       label: `${t("homepage.dashboard.inspected")}`,
@@ -114,7 +98,6 @@ export default function TableReportComponent(props: Props) {
         sort: true,
       },
     },
-
     {
       name: "defectRate",
       label: `${t("homepage.dashboard.defectRate")}`,
@@ -185,15 +168,66 @@ export default function TableReportComponent(props: Props) {
       displayRows: "of",
     },
   };
-
-   
   const [loadingExcel, setLoading] = useState(false);
-
+  const [workshops, setWorkshops] = useState(t("homepage.dashboard.dailyworkshop1"));
+  useEffect(() =>{
+    switch (cloneProps.fty) {
+      case "FactoryA01":{
+        cloneProps.fty = "Factory A01";
+        setWorkshops(()=>{
+          return t("homepage.dashboard.dailyworkshop1")
+        })
+        break;
+      }
+      case "FactoryA02":{
+        cloneProps.fty = "Factory A02";
+        setWorkshops(()=>{
+          return t("homepage.dashboard.dailyworkshop2")
+        })
+        break;
+      }
+      case "FactoryA08":{
+        cloneProps.fty = "Factory A08";
+        setWorkshops(()=>{
+          return t("homepage.dashboard.dailyworkshop8")
+        })
+        break;
+      }
+      case "FactoryB05":{
+        cloneProps.fty = "Factory B05";
+        setWorkshops(()=>{
+          return t("homepage.dashboard.dailyworkshop5")
+        })
+        break;
+      }
+      case "FactoryB06":{
+        cloneProps.fty = "Factory B06";
+        setWorkshops(()=>{
+          return t("homepage.dashboard.dailyworkshop6")
+        })
+        break;
+      }
+      case "FactoryC03":{
+        cloneProps.fty = "Factory C03";
+        setWorkshops(()=>{
+          return t("homepage.dashboard.dailyworkshop3")
+        })
+        break;
+      }
+      case "FactoryC07":{
+        cloneProps.fty = "Factory C07";
+        setWorkshops(()=>{
+          return t("homepage.dashboard.dailyworkshop7")
+        })
+        break;
+      }
+    }
+  },[cloneProps.fty]);
   const downloadExcel = async () => {
-    setLoading(true);
 
+    setLoading(true);
     try {
-      const response = await apiUtil.apiReport.post(`qc/excel/DownloadExcel?fd=${cloneProps.fd}&td=${cloneProps.td}&fty=Factory A02`, cloneProps.valueExcel, {
+      const response = await apiUtil.apiReport.post(`qc/excel/DownloadExcel?fd=${cloneProps.fd}&td=${cloneProps.td}&fty=${cloneProps.fty}`, cloneProps.valueExcel, {
         responseType: 'blob',
       });
 
@@ -215,9 +249,10 @@ export default function TableReportComponent(props: Props) {
       <Button type="primary" icon={<DownloadOutlined />} size="large" loading={loadingExcel} onClick={downloadExcel}>
           Download Excel
       </Button>
+      <br /><br/>
       <ThemeProvider theme={getMuiTheme()}>
         <MUIDataTable
-          title={t("homepage.dashboard.dailyworkshop2")}
+          title={workshops}
           data={cloneProps.valueExcel}
           columns={columns}
           options={options}
