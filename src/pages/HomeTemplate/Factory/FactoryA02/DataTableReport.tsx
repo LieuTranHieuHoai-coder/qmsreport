@@ -170,10 +170,14 @@ export default function TableReportComponent(props: Props) {
   };
   const [loadingExcel, setLoading] = useState(false);
   const [workshops, setWorkshops] = useState(t("homepage.dashboard.dailyworkshop1"));
+  const [selectFty, setSelectFty] = useState<string>("");
   useEffect(() =>{
     switch (cloneProps.fty) {
       case "FactoryA01":{
         cloneProps.fty = "Factory A01";
+        setSelectFty(() => {
+          return "Factory A01";
+        })
         setWorkshops(()=>{
           return t("homepage.dashboard.dailyworkshop1")
         })
@@ -183,6 +187,9 @@ export default function TableReportComponent(props: Props) {
         cloneProps.fty = "Factory A02";
         setWorkshops(()=>{
           return t("homepage.dashboard.dailyworkshop2")
+        });
+        setSelectFty(() => {
+          return "Factory A02";
         })
         break;
       }
@@ -190,6 +197,9 @@ export default function TableReportComponent(props: Props) {
         cloneProps.fty = "Factory A08";
         setWorkshops(()=>{
           return t("homepage.dashboard.dailyworkshop8")
+        });
+        setSelectFty(() => {
+          return "Factory A08";
         })
         break;
       }
@@ -197,6 +207,9 @@ export default function TableReportComponent(props: Props) {
         cloneProps.fty = "Factory B05";
         setWorkshops(()=>{
           return t("homepage.dashboard.dailyworkshop5")
+        });
+        setSelectFty(() => {
+          return "Factory B05";
         })
         break;
       }
@@ -204,6 +217,9 @@ export default function TableReportComponent(props: Props) {
         cloneProps.fty = "Factory B06";
         setWorkshops(()=>{
           return t("homepage.dashboard.dailyworkshop6")
+        });
+        setSelectFty(() => {
+          return "Factory B06";
         })
         break;
       }
@@ -211,6 +227,9 @@ export default function TableReportComponent(props: Props) {
         cloneProps.fty = "Factory C03";
         setWorkshops(()=>{
           return t("homepage.dashboard.dailyworkshop3")
+        });
+        setSelectFty(() => {
+          return "Factory C03";
         })
         break;
       }
@@ -218,6 +237,9 @@ export default function TableReportComponent(props: Props) {
         cloneProps.fty = "Factory C07";
         setWorkshops(()=>{
           return t("homepage.dashboard.dailyworkshop7")
+        });
+        setSelectFty(() => {
+          return "Factory C07";
         })
         break;
       }
@@ -227,7 +249,7 @@ export default function TableReportComponent(props: Props) {
 
     setLoading(true);
     try {
-      const response = await apiUtil.apiReport.post(`qc/excel/DownloadExcel?fd=${cloneProps.fd}&td=${cloneProps.td}&fty=${cloneProps.fty}`, cloneProps.valueExcel, {
+      const response = await apiUtil.apiReport.post(`qc/excel/DownloadExcel?fd=${cloneProps.fd}&td=${cloneProps.td}&fty=${selectFty}`, cloneProps.valueExcel, {
         responseType: 'blob',
       });
 
